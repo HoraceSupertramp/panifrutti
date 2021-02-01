@@ -9,7 +9,7 @@ h1 {
     font-size: 2.5em;
     text-align: center;
     margin: 0 1%;
-    text-shadow: 0 1px 43px #3c2d2d;
+    text-shadow: 0 1px 21px #3c2d2d;
 
 }
 
@@ -41,12 +41,15 @@ h1 {
 /* FIXED BARS */
 
 .fixed_bars{
+    position: fixed;
     background: #E2C5CA;
     display: flex;
-    height: 6em;
+    height: 8%;
     width: 100%;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 3px 16px 0px #271e1f;
+    z-index: 2;
 }
 
 #navbar_wrapper{
@@ -65,7 +68,9 @@ h1 {
 }
 
 
-
-#top_image{
-    width: 100%;
+#top_logo{
+    position: absolute;
+    left: 3%;
+    width: auto;
+    height: 90%;
 }
