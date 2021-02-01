@@ -9,6 +9,9 @@ module.exports = ({mode}) => {
         devServer: {
             contentBase: path.resolve(__dirname, "public"),
             open: true,
+            host: "192.168.1.220",
+            disableHostCheck: true,
+            port: 9000
         },
         entry: path.resolve(__dirname, "src", "index.tsx"),
         output: {
@@ -17,7 +20,7 @@ module.exports = ({mode}) => {
         },
         plugins: [new MiniCssExtractPlugin()],
         resolve: {
-          extensions: [".js", ".tsx", ".css"],
+          extensions: [".js", ".tsx", ".css", ".ts"],
         },
         module: {
             rules: [

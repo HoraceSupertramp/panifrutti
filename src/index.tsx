@@ -1,8 +1,8 @@
 import * as React from "react";
 import {render} from "react-dom";
-import style from "./indexCSS.css";
+import App from "./App";
+import styles from "./indexCSS.css";
 
-console.log(style);
-throw new Error();
+console.log(styles);
 
-render(<div>CIAO</div>,document.getElementById("root"));
+render(<App/>,document.getElementById("root"));

@@ -8,8 +8,10 @@
 debug.log
 .eslintcache
 .gitignore
-
-
+/public/manifest.json
+/public/manifest.webmanifest
+/src/test.ts
+.idea
 # testing
 /coverage
 
