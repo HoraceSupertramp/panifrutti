@@ -1,2 +1,2 @@
 # panifrutti
-Fruit shop window
+Fruit showcase
