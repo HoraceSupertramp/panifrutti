@@ -1,6 +1,61 @@
+/* TEMPLATES */
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap');
+
+html, body {
+    font-family: 'Spartan', sans-serif;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin: 0 1%;
+    text-shadow: 0 1px 43px #3c2d2d;
+
+}
+
+.logo_image {
+    height: 81%;
+    -webkit-filter: drop-shadow(0px 2px 5px #19411d);
+    filter: drop-shadow(0px 2px 3px #19411d);
+}
+
+.logo_image.side {
+    filter: drop-shadow(0px 2px 2px #19411d);
+}
+
+/* ELEMENTS */
 .AppContainer{
     position: absolute;
-    background: burlywood;
+    background: #A4D166 repeat;
     height: 100%;
     width: 100%;
+}
+
+
+
+
+
+/* FIXED BARS */
+
+.fixed_bars{
+    background: #E2C5CA;
+    position: fixed;
+    display: flex;
+    height: 6em;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#navbar_wrapper{
+    bottom: 0;
+    justify-content: space-between;
+}
+
+#showcase_button{
+    margin-left: 2%;
+}
+
+#summary_button{
+    margin-right: 2%;
 }

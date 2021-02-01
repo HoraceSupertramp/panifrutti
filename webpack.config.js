@@ -33,13 +33,14 @@ module.exports = ({mode}) => {
                     use: [MiniCssExtractPlugin.loader, "css-loader"]
                 },
                 {
-                    test: /\.(png|jpe?g|svg)$/,
-                    use: [
-                        {
-                            loader: "file-loader"
-                        }
-                    ],
-                }
+                    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/,/\.svg$/,],
+                    loader: "url-loader",
+                    options: {
+                        limit: 8000,
+                        name: 'static/media/[name].[hash:8].[ext]',
+                    },
+                },
+
             ]
         }
 
