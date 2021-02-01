@@ -31,6 +31,14 @@ module.exports = ({mode}) => {
                 {
                     test: /\.css$/,
                     use: [MiniCssExtractPlugin.loader, "css-loader"]
+                },
+                {
+                    test: /\.(png|jpe?g|svg)$/,
+                    use: [
+                        {
+                            loader: "file-loader"
+                        }
+                    ],
                 }
             ]
         }
