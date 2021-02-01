@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../images/Altre/Kiwi.png";
-import leftBox from "../images/Altre/fruit-box.svg";
-import rightBox from "../images/Altre/note.svg";
+import logo from "../../images/Altre/Kiwi.png";
+import leftBox from "../../images/Altre/fruit-box.svg";
+import rightBox from "../../images/Altre/note.svg";
 
 
 const NavigationBar : React.FC = () => {

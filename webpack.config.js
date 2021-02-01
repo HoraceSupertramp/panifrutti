@@ -33,7 +33,7 @@ module.exports = ({mode}) => {
                     use: [MiniCssExtractPlugin.loader, "css-loader"]
                 },
                 {
-                    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/,/\.svg$/,],
+                    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/,/\.svg$/],
                     loader: "url-loader",
                     options: {
                         limit: 8000,

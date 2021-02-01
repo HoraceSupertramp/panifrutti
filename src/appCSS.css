@@ -31,6 +31,9 @@ h1 {
     width: 100%;
 }
 
+.MyHeader{
+    position: fixed
+}
 
 
 
@@ -39,7 +42,6 @@ h1 {
 
 .fixed_bars{
     background: #E2C5CA;
-    position: fixed;
     display: flex;
     height: 6em;
     width: 100%;
@@ -48,9 +50,11 @@ h1 {
 }
 
 #navbar_wrapper{
+    position: fixed;
     bottom: 0;
     justify-content: space-between;
 }
+
 
 #showcase_button{
     margin-left: 2%;
@@ -58,4 +62,10 @@ h1 {
 
 #summary_button{
     margin-right: 2%;
+}
+
+
+
+#top_image{
+    width: 100%;
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import "./appCSS.css";
-import HeaderTitle from "./components-pages/HeaderTitle";
-import NavigationBar from "./components-pages/NavigationBar";
+import HeaderTitle from "./components-pages/utils-component/HeaderTitle";
+import NavigationBar from "./components-pages/utils-component/NavigationBar";
 import Categories from "./components-pages/Categories";
 import Summary from "./components-pages/Summary";
 import Showcase from "./components-pages/Showcase";
@@ -26,9 +26,9 @@ const App : React.FC = () => {
             <HeaderTitle/>
             {/* <Browser router> */}
                 <Home/>
-                <Categories/>
+            {/*<Categories/>
                 <Showcase/>
-                <Summary/>
+                <Summary/> */}
             {/* </Browser router> */}
             <NavigationBar/>
         </div>
