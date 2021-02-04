@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom'
 import "./appCSS.css";
 import HeaderTitle from "./components-pages/utils-component/HeaderTitle";
@@ -7,6 +7,9 @@ import Categories from "./components-pages/Categories";
 import Summary from "./components-pages/Summary";
 import Showcase from "./components-pages/Showcase";
 import Home from "./components-pages/Home";
+//const [elofstate,setElofstate] = useState([]);
+//const [elofstate1,setElofstate1] = useState(false);
+import "../database/firestore/db.config";
 
 
 const state = {
@@ -16,7 +19,6 @@ const state = {
     selectedKingdom: {},
     productToPreorder: {},
     searchInput: {},
-
 }
 
 

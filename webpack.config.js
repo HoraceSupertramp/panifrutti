@@ -9,7 +9,7 @@ module.exports = ({mode}) => {
         devServer: {
             contentBase: path.resolve(__dirname, "public"),
             open: true,
-            host: "192.168.1.217",
+            host: "localhost",
             disableHostCheck: true,
             port: 9000
         },
@@ -30,7 +30,14 @@ module.exports = ({mode}) => {
                 },
                 {
                     test: /\.css$/,
-                    use: [MiniCssExtractPlugin.loader, "css-loader"]
+                    use: [MiniCssExtractPlugin.loader,
+                        {
+                            loader: "css-loader",
+                            options: {
+                                url: false
+                            }
+                        }
+                        ]
                 },
                 {
                     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/,/\.svg$/],
