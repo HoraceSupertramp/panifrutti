@@ -10,6 +10,8 @@ import Home from "./components-pages/Home";
 //const [elofstate,setElofstate] = useState([]);
 //const [elofstate1,setElofstate1] = useState(false);
 import "../database/firestore/db.config";
+import "../database/auth/ui.config";
+import Login from "./components-pages/Login";
 
 
 const state = {
@@ -25,14 +27,15 @@ const state = {
 const App : React.FC = () => {
     return (
         <div className="AppContainer">
-            <HeaderTitle/>
+            <Login/>
             {/* <Browser router> */}
+            {/*<HeaderTitle/>
                 <Home/>
+            <NavigationBar/> */}
             {/*<Categories/>
                 <Showcase/>
                 <Summary/> */}
             {/* </Browser router> */}
-            <NavigationBar/>
         </div>
     )
 }
