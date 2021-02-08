@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../../images/Altre/Kiwi.png";
-import banco from "../../images/Altre/avocado.jpg"
 import styled from "styled-components";
 
 const HeaderTitle : React.FC = () => {
@@ -19,7 +18,7 @@ const Img = styled.div`
   position:fixed;
   height:30vh;  
   width: 100%;
-  background-image: url(${banco});
+  background-color: yellowgreen;
   background-size: cover;
   top: 8%;
   box-shadow: 0 3px 14px 0px #305823;

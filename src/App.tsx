@@ -24,6 +24,7 @@ const App : React.FC = () => {
     return (
         <div className="AppContainer">
             <HeaderTitle/>
+
             {/* <Browser router> */}
                 <Home/>
             {/*<Categories/>

@@ -1,0 +1,21 @@
+{
+  "name": "firebase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register --exit 'test/**/*.ts'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@firebase/testing": "^0.20.11",
+    "@types/mocha": "^8.2.0",
+    "mocha": "^8.2.1",
+    "ts-node": "^9.1.1"
+  }
+}

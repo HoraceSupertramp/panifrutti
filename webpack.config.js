@@ -9,7 +9,7 @@ module.exports = ({mode}) => {
         devServer: {
             contentBase: path.resolve(__dirname, "public"),
             open: true,
-            host: "192.168.1.217",
+            host: "localhost",
             disableHostCheck: true,
             port: 9000
         },
