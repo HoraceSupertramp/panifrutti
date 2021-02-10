@@ -14,10 +14,10 @@ debug.log
 .idea
 # testing
 /coverage
-
+/public/images
 # production
 /build
-/src/images
+
 
 # misc
 .DS_Store

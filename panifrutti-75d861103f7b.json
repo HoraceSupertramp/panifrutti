@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "eco-azimuth-303823",
+  "private_key_id": "75d861103f7bc5ac1da279555583db4c5f9b4fa0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDpc7nlBwS2dqzA\nOjnNiJJMu59a9YIUtph++UAQnvUSkdhO4qTSYDba3coI1+h89qEopomRNTBvQ/C4\nlsgR5uP4ZdfgunDP8h3oGXQfxj68pgW4JkFZpHfzKvm8w25VtW1FWhCK8picDMXT\nQ7YBMqBHXZSmWoXVWLJ1J5rFhJ+uZo1zKfxZUj3XBEdz89UxZkz/ontxbFuUgjp2\ntCDRVTCcElzUXAX9s1wWpsx8hbaNKadcXTl9bf3ZYglOMV9wJwOYUNDGrZeMq7Dk\nfgjcCzKl7DqfrFLrcWGA9s4szWxWYQzNSo0MVBwKHZEAGNO+jeDqY3Tja6LFrhMB\n/ek1DuRrAgMBAAECggEAGEMomEbE9MkGW4oRn4H99nnvbg7NoKUjhIVsukLS+fBC\nGLIRwDLeBfF+rFxIHiisXM2wxsXOOATJxrLBA1Se78jMiV9xwbg05yjcupVUyDAX\nBb76vrwgTUZI+JcfvJ+jm3gTTRA5JSASCqANu+J3lEMuY6WietGs5mPMgD0FiCSP\nOuMjjFwaI/xwwaNwRzq44G3jYs3o/9O1Wq7wTYmjnlF9hcHF7tWQoBkq6C6CB3Y1\nipm2YHW8MkNI1E1GfMrPIwW/H0i34ny8w30YqvaUm+rAG+5I01xIyUpAOufN6HrB\nAGiLoJZRg3ur6TQe58tVOtsmqMHRXfOT6UIZCw7LbQKBgQD3mm5dktkKzfaDFwU/\n7ZAlzAX8bBT+4RPZTAKCY0BHW7LivoqjmPRYSi7S2TMO+ePG3o7XM1Q/YvTTblwA\nWTOrDXnWrJ1hkE5htqAwKGrGKR0ye8kEAjV26mUHgzaMyYLtB6NVFM9I1CIi0xqX\nLR8mJUB2qeaqqylzvgYKRz0ifwKBgQDxXnD/OCUG6ChEo4jy/YB3lBOfo0BN+8zZ\nibLUEK8uON7fQw2jmAM71qyx1KG7g/RJCTNezmv7Kbpp3Tk/92ld0rnhZpyiyaHZ\naNfe7RKhYF/ad5nJtzj94RGFhWy41teQ8RM0ysz0KwtLnU2c29FHBNeQorPtaB10\nnlq4sUzwFQKBgQDIm5yTv+iNsnXpm/sq4mUJ2pV3AHK6Vs3oHodh8NwhdJAo2cwl\n5EUES4ZIWqXdmmULuUHt5a56dMh7jUyJE7yi+BYg8lXIuExpKrf6jKSFzMXVIymo\nT8nVgO89+Pd3dcTYGnog8u1Gymil4ngGyA4Wr9Pc0KcM3ASHvAvUxAcqLQKBgQDS\nywreKZdUr92zDCsnIzNVu1FkAnu/X1+owDQYNjX3pR0nWHUJ4VE5qiMJ70wL6pKm\nUk21x4rQP8IYgGZmMdmoYceKTUYQeQ1LRN/6RYsWuocb0YXSf5xbRHs746lux9pd\nL9z5Jv/VYd4sfEVy7xqW7migXSfL9zh6R22tjNJHfQKBgQDRVI0rr61ja48bv7AS\nM3sQO9xf7TsnR2M/mtHyyeO18PldFuIHVgO/zswFe3q4ojhMEZhEoro7uLGkwX/u\nfzh9VD7EYiP0+EFLUt0BuH37Fehv8qtY5y7tlHXPw/5CzJ1z4uuaZLYc5mJ0ExS/\nX+jjM9szzakoHu26ywLjg3Zv4w==\n-----END PRIVATE KEY-----\n",
+  "client_email": "sviluppo@eco-azimuth-303823.iam.gserviceaccount.com",
+  "client_id": "105737345795701806299",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sviluppo%40eco-azimuth-303823.iam.gserviceaccount.com"
+}

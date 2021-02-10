@@ -5,6 +5,8 @@
   },
   "emulators": {
     "firestore": {
+      "name": "firestore",
+      "host": "localhost",
       "port": 8080
     },
     "ui": {

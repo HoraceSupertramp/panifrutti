@@ -9,13 +9,17 @@
   "scripts": {
     "test": "mocha -r ts-node/register --exit 'test/**/*.ts'"
   },
-  "author": "",
+  "author": "Mauro Ciccullo",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "@firebase/testing": "^0.20.11",
+    "@firebase/rules-unit-testing": "^1.1.11",
+    "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
+    "@types/sinon": "^9.0.10",
+    "chai": "^4.3.0",
     "mocha": "^8.2.1",
+    "sinon": "^9.2.4",
     "ts-node": "^9.1.1"
   }
 }
