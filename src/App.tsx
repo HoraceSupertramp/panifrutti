@@ -7,21 +7,9 @@ import Categories from "./components-pages/Categories";
 import Summary from "./components-pages/Summary";
 import Showcase from "./components-pages/Showcase";
 import Home from "./components-pages/Home";
-//const [elofstate,setElofstate] = useState([]);
-//const [elofstate1,setElofstate1] = useState(false);
-//import "../database/firestore/db.config";
-//import "../database/auth/ui.config";
+//const [state,setstate] = useState([]);
+//const [state1,setstate1] = useState(false);
 import Login from "./components-pages/Login";
-import {firebaseApp,firestoreApp} from "../firebase/firebase.config";
-
-
-firestoreApp.collection("ciao").doc("lollo").get()
-    .then((snapshot) => {
-        console.log("SNAP" , snapshot.exists)
-    })
-    .catch((err) => {
-        console.log(err)
-    });
 
 const state = {
     openedBox: false,
@@ -31,7 +19,6 @@ const state = {
     productToPreorder: {},
     searchInput: {},
 }
-
 
 
 const App : React.FC = () => {
