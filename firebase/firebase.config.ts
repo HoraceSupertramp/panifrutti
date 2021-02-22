@@ -1,8 +1,10 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth"
+const firebaseui = require("firebaseui");
 
-//Oggetto di configurazione personalizzato firebase
+console.log(process.env.NODE_ENV);
+//Firebase configuration object
 const firebaseConfig = (process.env.NODE_ENV === "production") ? {
     apiKey: "AIzaSyBxM7PLIOeXZuxgBZU60R43utE5MQfS9G4",
     authDomain: "panifrutti-45ea1.firebaseapp.com",
@@ -13,28 +15,77 @@ const firebaseConfig = (process.env.NODE_ENV === "production") ? {
     appId: "1:650662891272:web:225e3bb2166c9bfd6466bd",
     measurementId: "G-D39GSGJWSR"
 } : {
-    projectId: "emulated project",
-    apiKey: "this_is_the_api_key"
+    apiKey: "emu-key",
+    authDomain: "panifrutti-45ea1.webapp.com",
+    projectId: "emulated-panifrutti",
+    //storageBucket: "emulated-panifrutti-45ea1.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:225e3bb2166c9emu6466bd",
+    //measurementId: "G-D39GSGEMUL"
 }
 
 
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-// Inizializza Firebase Authentication
-const frbAuth = firebase.auth(app);
-// Inizializza Firestore
-const dbCloud = firebase.firestore();
 
+
+// Initialize Firebase
+const myapp = firebase.initializeApp(firebaseConfig);
+
+// Inizializza Firebase Authentication
+const frbAuthent = firebase.auth(myapp);
+//frbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then();
+
+// Inizializza Firestore
+const  frbFirestore = firebase.firestore();
 
 // Reindirizza le app sui rispettivi emulatori solo in modalità di sviluppo
 if (process.env.NODE_ENV === "development") {
     // AUTH
-    frbAuth.useEmulator("http://localhost:9099");
+    frbAuthent.useEmulator("http://localhost:9099");
     //FIRESTORE
-    dbCloud.useEmulator("localhost", 8080);
-
+    frbFirestore.useEmulator("localhost", 8080);
 }
 
-export const firebaseAuth = frbAuth
-export const  firestoreApp = dbCloud;
+//debugger;
+
+const ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+
+const uiConfig ={
+    //callbacks?: Callbacks;
+    //credentialHelper?: CredentialHelperType;
+   // popupMode: true,
+    //queryParameterForSignInSuccessUrl?: string;
+   // queryParameterForWidgetMode?: string;
+    //signInFlow?: string;
+    signInSuccessUrl : "",
+   // siteName?: string;
+    //tosUrl?: (() => void) | string;
+    //privacyPolicyUrl?: (() => void) | string;
+    //widgetUrl?: string;
+    signInFlow : "popup",
+    signInOptions: [
+        {
+            provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+            forceSameDevice: false,
+        },
+        {
+            provider : firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        },
+        {
+            provider : firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        }
+    ]
+}
+
+
+export const firebaseMyApp = myapp;
+export const firebaseAuthent = frbAuthent;
+export const firestoreApp = frbFirestore;
+export const globalFirebase = firebase;
+export const firebaseMyUi = {
+    ui : ui,
+    uiConfig : uiConfig
+};
+
 

@@ -25,7 +25,7 @@ module.exports = ({mode}) => {
         module: {
             rules: [
                 {
-                    test: /\.tsx$/,
+                    test: /\.tsx?$/,
                     use: ["ts-loader"]
                 },
                 {
@@ -47,10 +47,8 @@ module.exports = ({mode}) => {
                         name: 'static/media/[name].[hash:8].[ext]',
                     },
                 },
-
             ]
         }
-
 }};
 
 

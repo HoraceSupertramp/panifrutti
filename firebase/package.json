@@ -7,11 +7,15 @@
     "test": "test"
   },
   "scripts": {
+    "start": "firebase emulators:start --import=./emulators-data --export-on-exit",
     "test": "mocha -r ts-node/register --exit 'test/**/*.ts'"
   },
   "author": "Mauro Ciccullo",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "firebaseui": "^4.7.3",
+    "react-firebaseui": "^4.1.0"
+  },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^1.1.11",
     "@types/chai": "^4.2.14",

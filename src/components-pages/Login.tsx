@@ -1,32 +1,34 @@
 import React from "react";
+import {firebaseMyApp,firebaseAuthent, firebaseMyUi} from "../../firebase/firebase.config";
+import 'firebaseui/dist/firebaseui.css'
 import styled from "styled-components";
 
+firebaseMyUi.ui.start('#firebaseui-auth-container', firebaseMyUi.uiConfig);
+console.log(firebaseMyApp)
+const Login : React.FC = (props : any) => {
 
-const Login : React.FC = () => {
-    return (
-        <Log className="Login" id="firebaseui-auth-container">
-            <Inp type="text" className="buttons" placeholder="Insert username"/>
-            <Inp type="text" className="buttons" placeholder="Insert email"/>
-            <Inp type="text" className="buttons" placeholder="Insert password"/>
-            <Inp type="text" className="buttons" placeholder="Confirm password"/>
-        </Log>
-    )
+        return (
+            <LoginComp>
+                <LoginContainer>
+                    <div id="firebaseui-auth-container"/>
+                </LoginContainer>
+            </LoginComp>
+        )
 }
 
-export default Login;
-
-const Log = styled.div `
+const LoginComp = styled.div`
+  height: 100vh;
+  width: 100vw;
   position: absolute;
-  top: 12vh;
-  background-color: #305823;
-  height: 80%;
-  width: 80%;
   display: flex;
-  align-items:center;
-  justify-content:space-around;
-`
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+`;
 
-const Inp = styled.input`
-  height: 3%;
-  width: 12%
-`
+const LoginContainer = styled.div`
+  height: 70%;
+  width: 60%;
+`;
+
+export default Login;
