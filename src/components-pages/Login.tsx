@@ -1,16 +1,24 @@
-import React from "react";
-import {firebaseMyApp,firebaseAuthent, firebaseMyUi} from "../../firebase/firebase.config";
+import React, {useRef} from "react";
+import {startUi} from "../../firebase/firebase.config";
 import 'firebaseui/dist/firebaseui.css'
 import styled from "styled-components";
 
-firebaseMyUi.ui.start('#firebaseui-auth-container', firebaseMyUi.uiConfig);
-console.log(firebaseMyApp)
+
+
+
+let uiEl = () => {
+    startUi();
+    return (
+        <div id="firebaseui-auth-container"/>
+    )
+}
+
 const Login : React.FC = (props : any) => {
 
         return (
             <LoginComp>
                 <LoginContainer>
-                    <div id="firebaseui-auth-container"/>
+                    {uiEl()}
                 </LoginContainer>
             </LoginComp>
         )

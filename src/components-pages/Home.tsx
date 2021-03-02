@@ -1,16 +1,13 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import "./pagesCSS.css"
 
 
 const Home : React.FC = () => {
 
     return (
-        <div className="home_wrapper">
-            <div className="catalogo_imglink">
+        <div className="Home-wrapper">
 
-            </div>
-            <div className="">
-
-            </div>
         </div>
     )
 }

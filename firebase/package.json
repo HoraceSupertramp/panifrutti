@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "firebaseui": "^4.7.3",
-    "react-firebaseui": "^4.1.0"
+    "react-firebaseui": "^4.1.0",
+    "react-router": "^5.2.0"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^1.1.11",

@@ -3,7 +3,7 @@ import "firebase/firestore";
 import "firebase/auth"
 const firebaseui = require("firebaseui");
 
-console.log(process.env.NODE_ENV);
+
 //Firebase configuration object
 const firebaseConfig = (process.env.NODE_ENV === "production") ? {
     apiKey: "AIzaSyBxM7PLIOeXZuxgBZU60R43utE5MQfS9G4",
@@ -51,7 +51,7 @@ const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 
 const uiConfig ={
-    //callbacks?: Callbacks;
+    //
     //credentialHelper?: CredentialHelperType;
    // popupMode: true,
     //queryParameterForSignInSuccessUrl?: string;
@@ -62,30 +62,28 @@ const uiConfig ={
     //tosUrl?: (() => void) | string;
     //privacyPolicyUrl?: (() => void) | string;
     //widgetUrl?: string;
-    signInFlow : "popup",
     signInOptions: [
-        {
-            provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-            forceSameDevice: false,
-        },
         {
             provider : firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         },
         {
             provider : firebase.auth.FacebookAuthProvider.PROVIDER_ID,
         }
-    ]
+    ],
+    callbacks: {
+        
+    }
 }
+
+
+
+let uiElement = () => ui.start('#firebaseui-auth-container', uiConfig);
 
 
 export const firebaseMyApp = myapp;
 export const firebaseAuthent = frbAuthent;
 export const firestoreApp = frbFirestore;
 export const globalFirebase = firebase;
-export const firebaseMyUi = {
-    ui : ui,
-    uiConfig : uiConfig
-};
+export const startUi = uiElement;
 
 
