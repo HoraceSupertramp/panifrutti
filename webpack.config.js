@@ -11,7 +11,8 @@ module.exports = ({mode}) => {
             open: true,
             host: "localhost",
             disableHostCheck: true,
-            port: 9000
+            port: 9000,
+            historyApiFallback: true
         },
         entry: path.resolve(__dirname, "src", "index.tsx"),
         output: {

@@ -24,17 +24,15 @@ const App : React.FC = (props : any) => {
                         <NavLink to="/about">About</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/users">Users</NavLink>
+                        <NavLink to="/categories">Categories</NavLink>
                     </li>
                 </ul>
             </nav>
 
-            <Switch>
-                <Route path="/about" component={About}/>
-                <Route path="/categories" component={Categories}/>
-                <Route path="/summary" component={Summary}/>
-                <Route exact={true} path="/" component={Home}/>
-            </Switch>
+            <Route path="/about" component={About}/>
+            <Route path="/categories" component={Categories}/>
+            <Route path="/summary" component={Summary}/>
+            <Route exact={true} path="/" component={Home}/>
         </BrowserRouter>
     )
 }
