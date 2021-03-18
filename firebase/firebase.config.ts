@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth"
+import {uiConfig} from "./ui.config";
 const firebaseui = require("firebaseui");
 
 
@@ -15,13 +16,8 @@ const firebaseConfig = (process.env.NODE_ENV === "production") ? {
     appId: "1:650662891272:web:225e3bb2166c9bfd6466bd",
     measurementId: "G-D39GSGJWSR"
 } : {
-    apiKey: "emu-key",
-    authDomain: "panifrutti-45ea1.webapp.com",
     projectId: "emulated-panifrutti",
-    //storageBucket: "emulated-panifrutti-45ea1.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:225e3bb2166c9emu6466bd",
-    //measurementId: "G-D39GSGEMUL"
+    apiKey: "ciao"
 }
 
 
@@ -31,59 +27,26 @@ const firebaseConfig = (process.env.NODE_ENV === "production") ? {
 const myapp = firebase.initializeApp(firebaseConfig);
 
 // Inizializza Firebase Authentication
-const frbAuthent = firebase.auth(myapp);
+const auth = firebase.auth(myapp);
 //frbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then();
 
 // Inizializza Firestore
-const  frbFirestore = firebase.firestore();
+const  db = firebase.firestore();
+
 
 // Reindirizza le app sui rispettivi emulatori solo in modalità di sviluppo
 if (process.env.NODE_ENV === "development") {
     // AUTH
-    frbAuthent.useEmulator("http://localhost:9099");
+    auth.useEmulator("http://localhost:9099");
     //FIRESTORE
-    frbFirestore.useEmulator("localhost", 8080);
+    db.useEmulator("localhost", 8080);
 }
-
-//debugger;
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-
-const uiConfig ={
-    //
-    //credentialHelper?: CredentialHelperType;
-   // popupMode: true,
-    //queryParameterForSignInSuccessUrl?: string;
-   // queryParameterForWidgetMode?: string;
-    //signInFlow?: string;
-    signInSuccessUrl : "",
-   // siteName?: string;
-    //tosUrl?: (() => void) | string;
-    //privacyPolicyUrl?: (() => void) | string;
-    //widgetUrl?: string;
-    signInOptions: [
-        {
-            provider : firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        },
-        {
-            provider : firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        }
-    ],
-    callbacks: {
-        
-    }
-}
-
-
-
 let uiElement = () => ui.start('#firebaseui-auth-container', uiConfig);
 
-
-export const firebaseMyApp = myapp;
-export const firebaseAuthent = frbAuthent;
-export const firestoreApp = frbFirestore;
-export const globalFirebase = firebase;
+export const firestoreApp = db;
 export const startUi = uiElement;
 
 

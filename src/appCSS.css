@@ -1,11 +1,85 @@
-/* TEMPLATES */
-@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap');
-
 html, body {
-    font-family: 'Spartan', sans-serif;
-}
-
-h1.h2,h3,h4, h5, h6 {
     margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6, a, ul, li, input, button{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100%;
+}
+
+/************** APP *****************/
+
+.App-wrapper {
+    position: relative;
+}
+
+.TitlePage {
+}
+
+
+/********* NAV MENU BAR *********/
+
+.TopBar-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.TopBarLinks-wrapper{
+    display: flex;
+    flex : 1 1 auto;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ListMenu-item {
+    list-style: none;
+}
+
+/********* DASHBOARD ***********/
+
+.Dashboard-Wrapper {
+
+}
+
+
+/******* FORMS ************/
+
+.My-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Forms-wrapper{
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+}
+
+.MyFormEl-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+/****** PRODUCTS **********/
+
+.ProductListItem-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ShowCase-wrapper{
+
+}

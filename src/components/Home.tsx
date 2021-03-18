@@ -1,13 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import "./pagesCSS.css"
 
 
 const Home : React.FC = () => {
 
     return (
         <div className="Home-wrapper">
-
+            <h2>HOME</h2>
         </div>
     )
 }
