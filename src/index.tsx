@@ -10,7 +10,7 @@ import "../firebase/firebase.config";
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-
+store.subscribe(() => console.log(store.getState()));
 render(
     <Provider store = {store}>
         <App/>

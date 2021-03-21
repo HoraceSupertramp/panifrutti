@@ -26,9 +26,7 @@ const App : React.FC = (props : any) => {
                     <Route exact={true} path="/signup" component={SignUp}/>
                     <Route exact={true} path="/about" component={About}/>
                     <Route exact={true} path="/summary" component={Summary}/>
-                    <Route exact={true} path="/categories"
-                           component={Categories}
-                    />
+                    <Route exact={true} path="/categories" component={Categories} />
             </div>
         </BrowserRouter>
     )

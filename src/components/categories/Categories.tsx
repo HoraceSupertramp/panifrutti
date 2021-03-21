@@ -1,11 +1,13 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {useDispatch, useStore} from "react-redux";
-import {AppState, Section} from "../../app.types";
-import {categoriesFetchEnd} from "../../store/actions/categories-actions/categoriesActions";
+import {useDispatch, useSelector, useStore} from "react-redux";
+import {AppState, Category, Section} from "../../app.types";
 import {firestoreApp} from "../../../firebase/firebase.config";
 import {Link} from "react-router-dom";
 import firebase from "firebase";
 import DocumentData = firebase.firestore.DocumentData;
+import {
+    categoriesFetch,
+} from "../../store/actions/categories-actions/categoriesActions";
 
 /** Returns a React.FC containing a wrapper for the icons links tho the showcases,
  * categories viewer
@@ -15,52 +17,24 @@ import DocumentData = firebase.firestore.DocumentData;
  *
  * @constructor
  */
-/*
-let nameSettHelper = () => {
-    for (let i = 0; i < categories.length; i++) names.push(categories[i].name);
-}
-
-nameSettHelper();
-
-
-*/
 
 type  CategoriesProps = AppState;
 
 
 const Categories : React.FC<CategoriesProps> = (props) => {
 
-   const { categories } = useStore<AppState>().getState();
+   const state = useSelector<AppState,Category[]>((state) => state.categories );
 
-   const dispatch = useDispatch<any>()
+   const dispatch = useDispatch()
 
-
-
-
-    const [data,setData] = useState<DocumentData>([]);
-
-
-    useEffect(()  => {
-
-    const catalogRef = firestoreApp
-                       .collection("catalog");
-    catalogRef
-    .get()
-    .then((snapshot ) => {
-        const result = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        setData(result);
-    })
-
-    },[]);
-
+    useEffect(()=>{
+        dispatch(categoriesFetch());
+    },[])
 
     return (
             <div className="Categories-wrapper">
                 <h2>CATEGORIE</h2>
-                {data.map((el : any ) => <Link key={el.id} to={"/categories/"+el.id}>{el.id}</Link>)}
+                { state && state.map((el : Category ) => <Link key={el.id} to={"/categories/"+el.id}>{el.id}</Link>) }
             </div>
             )
 
