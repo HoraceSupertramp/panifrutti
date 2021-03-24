@@ -37,7 +37,7 @@ const App : React.FC = () => {
                         <Route exact={true} path="/about" component={About}/>
                         <Route exact={true} path="/summary" component={Summary}/>
                         <Route exact={true} path="/categories" component={Categories} />
-                        {/*<Route exact={true} path={"/categories/:selectedCategory"} component={ShowSections}/>*/}
+                        <Route exact={true} path={"/categories/"+selectedCategory} component={ShowSections}/>
                         <Route exact={true} path={"/categories/"+selectedCategory+"/"+selectedSection} component={ProductListItem}/>
                     </Switch>
                 </div>

@@ -5,7 +5,7 @@ import {AppState, Category, Product, Section} from "../../app.types";
 import {useDispatch, useSelector} from "react-redux";
 import {sectionsFetch, selectCategory, selectSection} from "../../store/actions/catalog-actions/catalogActions";
 import {NavLink} from "react-router-dom";
-import {Switch} from "react-router";
+import {Route, Switch} from "react-router";
 //import {sectionsFetch} from "../../store/actions/catalog-actions/catalogActions";
 
 /** Creates and renders a Products[] having the same "section" KEY
@@ -56,6 +56,7 @@ const ShowSections : React.FC = () => {
                     })
             }
             {(selectedSection !== "") ? <div>{selectedSection}</div> : null}
+
         </div>
     )
 }
