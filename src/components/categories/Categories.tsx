@@ -1,13 +1,10 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {useDispatch, useSelector, useStore} from "react-redux";
-import {AppState, Category, Section} from "../../app.types";
-import {firestoreApp} from "../../../firebase/firebase.config";
-import {Link} from "react-router-dom";
-import firebase from "firebase";
-import DocumentData = firebase.firestore.DocumentData;
-import {
-    categoriesFetch,
-} from "../../store/actions/categories-actions/categoriesActions";
+import {useDispatch, useSelector} from "react-redux";
+import {AppState, Category} from "../../app.types";
+import {NavLink} from "react-router-dom";
+import {categoriesFetch, selectCategory} from "../../store/actions/catalog-actions/catalogActions";
+
+
 
 /** Returns a React.FC containing a wrapper for the icons links tho the showcases,
  * categories viewer
@@ -18,12 +15,11 @@ import {
  * @constructor
  */
 
-type  CategoriesProps = AppState;
 
+const Categories : React.FC = () => {
 
-const Categories : React.FC<CategoriesProps> = (props) => {
-
-   const state = useSelector<AppState,Category[]>((state) => state.categories );
+   const categories = useSelector<AppState,Category[]>((state) => state.categories );
+   const selectedCategory = useSelector<AppState,string>( (state) => state.selectedCategory);
 
    const dispatch = useDispatch()
 
@@ -31,12 +27,28 @@ const Categories : React.FC<CategoriesProps> = (props) => {
         dispatch(categoriesFetch());
     },[])
 
-    return (
-            <div className="Categories-wrapper">
-                <h2>CATEGORIE</h2>
-                { state && state.map((el : Category ) => <Link key={el.id} to={"/categories/"+el.id}>{el.id}</Link>) }
+    let selectCategoryHandler = useCallback((id : string) => (e : React.MouseEvent) =>{
+        dispatch(selectCategory(id));
+    },[])
+
+    if (categories) return (
+            <div className="Content-wrapper" id="categories-wrapper">
+                { categories && <h2>CATEGORIE</h2> }
+                { categories &&
+                  categories
+                      .map((el : Category ) => {
+                              return ( <NavLink onClick={selectCategoryHandler(el.id)}
+                                       className="Category-item"
+                                       key={el.id} to={"/categories/" + el.id}>
+                                  {el.id}
+                              </NavLink> )
+                          }
+                      )
+                }
+                { (selectedCategory !== "") ? <div>{selectedCategory}</div> : null }
             </div>
             )
+    else return null;
 
 }
 

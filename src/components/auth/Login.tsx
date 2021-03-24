@@ -37,8 +37,8 @@ const Login : React.FC = (props : any) => {
     )
 
     return (
-        <div className="Forms-wrapper" id="LoginWrapper">
-            <form className="My-form" id="LoginForm" onSubmit={handleSubmit}>
+        <div className="Content-wrapper" id="login-wrapper">
+            <form className="My-form" id="login-Form" onSubmit={handleSubmit}>
                 <h3 className="TitlePage"> SIGNIN </h3>
                 <div className="MyFormEl-wrapper">
                     <label htmlFor="email">Email</label>

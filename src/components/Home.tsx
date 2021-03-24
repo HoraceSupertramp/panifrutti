@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const Home : React.FC = () => {
 
     return (
-        <div className="Home-wrapper">
+        <div className="Content-wrapper" id="home-wrapper">
             <h2>HOME</h2>
         </div>
     )

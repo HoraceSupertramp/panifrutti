@@ -39,8 +39,8 @@ const SignUp : React.FC = (props : any) => {
     },[credentials])
 
   return (
-      <div className="Forms-wrapper" id="LoginWrapper">
-          <form className="My-form" id="LoginForm" onSubmit={handleSubmit}>
+      <div className="Content-wrapper" id="signup-wrapper">
+          <form className="My-form" id="signup-Form" onSubmit={handleSubmit}>
               <h3 className="TitlePage"> SIGNUP </h3>
               <div className="MyFormEl-wrapper">
                   <label htmlFor="email">Email</label>

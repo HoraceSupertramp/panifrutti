@@ -7,10 +7,11 @@ import rootReducer from "./store/reducers/rootReducer";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import "../firebase/firebase.config";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
-store.subscribe(() => console.log(store.getState()));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+
 render(
     <Provider store = {store}>
         <App/>

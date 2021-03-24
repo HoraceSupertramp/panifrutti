@@ -6,7 +6,7 @@
                 <Home/>
             <NavigationBar/> */}
             {/*<Categories/>
-                <Showcase/>
+                <ShowSections/>
                 <Summary/> */}
             {/* </Browser router> */}
 

@@ -1,39 +1,47 @@
 export interface AppState {
-    isLoggedIn: boolean;
-    user: object;
-    sections: Section[];
-    categories: Category[];
-    products: Product[];
-    product: Product;
-    cart: Product[];
+    auth: object;
+    user: object;                   //utente
+    categories: Category[];         //categorie generali
+    selectedCategory: string;       //categoria selezionata
+    sections: Section[];            //sotto categorie
+    selectedSection: string;        //sezione scelta
+    products: Product[];            //lista di prodotti
+    selectedProduct: string;       //prodotto singolo
+    cart: SelectedProduct[];        //lista di prodotti selezionati
 }
 
 export interface Section {
-    name : string;
-    image : string;
+    id : string;
+    image? : string;
 }
 
 export interface Product {
-    id?: string,
-    name: string,
-    available: boolean,
-    description: string,
-    preorder?: boolean,
-    measureKg: string,
-    price: number,
-    section?: string,
-    primizia?: string
-    image: any,
+    id: string;
+    available?: boolean;
+    description?: string;
+    preorder?: boolean;
+    measureKg?: string;
+    price?: number;
+    section?: string;
+    primizia?: string;
+    image?: any;
 }
 
 
 export interface Category {
-    id: string,
-    image?: any,
-    isActive?: boolean
+    id: string;
+    image?: any;
+    isActive?: boolean;
 }
 
+export interface Order {
+    user: object;
+    total: number;
+    selected: Product[];
+}
 
-
-
+export interface SelectedProduct {
+    product: Product[];
+    quantity: number;
+}
 
