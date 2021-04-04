@@ -9,7 +9,6 @@ import thunk from "redux-thunk";
 import "../firebase/firebase.config";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 render(

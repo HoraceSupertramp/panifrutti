@@ -44,15 +44,14 @@ const ShowSections : React.FC = () => {
             sections &&
             sections
                 .map((el : Section ) => {
-                    let str = "/categories/"+selectedCategory+"/"+el.id
                     return (
-                        <NavLink onClick={selectSectionHandler(el.id)}
+                        <li onClick={selectSectionHandler(el.id)}
                              className="Section-item"
                              key={el.id}
-                             to={str}
                         >
                             {el.id}
-                        </NavLink> )
+                        </li>
+                         )
                     })
             }
             {(selectedSection !== "") ? <div>{selectedSection}</div> : null}

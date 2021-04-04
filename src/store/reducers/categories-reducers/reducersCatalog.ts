@@ -3,13 +3,13 @@ import { CatalogActions } from "../../actions/catalog-actions/catalogActions";
 
 export const categoriesReducer = (state = null, action : CatalogActions) => {
     switch (action.type) {
-
         case "CATEGORIES_FETCH_END" :
             return action.categories;
 
         default : return state;
     }
 }
+
 export const selectedCategoryReducer = (state = "", action : CatalogActions) => {
     switch (action.type) {
         case "SET_SELECTED_CATEGORY":

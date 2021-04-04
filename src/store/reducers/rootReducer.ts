@@ -6,6 +6,7 @@ import {
     selectedCategoryReducer, selectedProductReducer,
     selectedSectionReducer
 } from "./categories-reducers/reducersCatalog";
+import {selectedViewReducer} from "./views-reducers";
 /*import categoriesReducer from "./categories-reducers/categoriesReducer";
 import selectedCategoryReducer from "./categories-reducers/selectedCategoryReducer";
 import selectedSectionReducer from "./categories-reducers/selectedSectionReducer";
@@ -14,6 +15,7 @@ import sectionsReducer from "./categories-reducers/sectionsReducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    selectedView: selectedViewReducer,
     categories: categoriesReducer,
     selectedCategory: selectedCategoryReducer,
     sections: sectionsReducer,

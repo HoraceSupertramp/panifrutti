@@ -8,6 +8,7 @@ export interface AppState {
     products: Product[];            //lista di prodotti
     selectedProduct: string;       //prodotto singolo
     cart: SelectedProduct[];        //lista di prodotti selezionati
+    selectedView: string            //vista da renderizzare
 }
 
 export interface Section {
@@ -44,4 +45,5 @@ export interface SelectedProduct {
     product: Product[];
     quantity: number;
 }
+
 

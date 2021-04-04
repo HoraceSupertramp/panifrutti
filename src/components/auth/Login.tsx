@@ -31,15 +31,12 @@ const Login : React.FC = (props : any) => {
         console.log(credentials);
     },[credentials])
 
-    useEffect(()=>{
-        startUi();
-        }
-    )
+    useEffect(()=>startUi());
 
     return (
         <div className="Content-wrapper" id="login-wrapper">
             <form className="My-form" id="login-Form" onSubmit={handleSubmit}>
-                <h3 className="TitlePage"> SIGNIN </h3>
+                <h3 className="TitlePage"> LOGIN </h3>
                 <div className="MyFormEl-wrapper">
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" onChange={handleChange} required={true}/>

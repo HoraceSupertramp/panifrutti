@@ -37,11 +37,11 @@ const Categories : React.FC = () => {
                 { categories &&
                   categories
                       .map((el : Category ) => {
-                              return ( <NavLink onClick={selectCategoryHandler(el.id)}
+                              return ( <li onClick={selectCategoryHandler(el.id)}
                                        className="Category-item"
-                                       key={el.id} to={"/categories/" + el.id}>
+                                       key={el.id}>
                                   {el.id}
-                              </NavLink> )
+                                  </li>)
                           }
                       )
                 }
