@@ -1,7 +1,8 @@
 import { CatalogActions } from "../../actions/catalog-actions/catalogActions";
+import {Category, Product, Section} from "../../../app.types";
 
 
-export const categoriesReducer = (state = null, action : CatalogActions) => {
+export const categoriesReducer = (state : Category[] = [], action : CatalogActions) => {
     switch (action.type) {
         case "CATEGORIES_FETCH_END" :
             return action.categories;
@@ -18,7 +19,7 @@ export const selectedCategoryReducer = (state = "", action : CatalogActions) => 
     }
 }
 
-export const sectionsReducer = (state = [], action: CatalogActions) => {
+export const sectionsReducer = (state: Section[] = [], action: CatalogActions) => {
     switch (action.type) {
         case "SECTIONS_FETCH_END" :
             return action.sections
@@ -26,7 +27,7 @@ export const sectionsReducer = (state = [], action: CatalogActions) => {
     }
 }
 
-export const selectedSectionReducer = (state = [], action: CatalogActions) => {
+export const selectedSectionReducer = (state = "", action: CatalogActions) => {
     switch (action.type) {
         case "SET_SELECTED_SECTION" :
             return action.id
@@ -34,7 +35,7 @@ export const selectedSectionReducer = (state = [], action: CatalogActions) => {
     }
 }
 
-export const productsReducer = (state = [], action: CatalogActions) => {
+export const productsReducer = (state: Product[] = [], action: CatalogActions) => {
     switch (action.type) {
         case "PRODUCTS_FETCH_END" :
             return action.products
@@ -42,7 +43,7 @@ export const productsReducer = (state = [], action: CatalogActions) => {
     }
 }
 
-export const selectedProductReducer = (state = [], action: CatalogActions) => {
+export const selectedProductReducer = (state = "", action: CatalogActions) => {
     switch (action.type) {
         case "SET_SELECTED_PRODUCT" :
             return action.id

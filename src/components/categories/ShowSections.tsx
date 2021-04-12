@@ -3,9 +3,15 @@ import ProductCard from "./ProductListItem";
 import ProductListItem from "./ProductListItem";
 import {AppState, Category, Product, Section} from "../../app.types";
 import {useDispatch, useSelector} from "react-redux";
-import {sectionsFetch, selectCategory, selectSection} from "../../store/actions/catalog-actions/catalogActions";
+import {
+    productsFetch,
+    sectionsFetch,
+    selectCategory,
+    selectSection
+} from "../../store/actions/catalog-actions/catalogActions";
 import {NavLink} from "react-router-dom";
 import {Route, Switch} from "react-router";
+import {selectView} from "../../store/actions/views-actions";
 //import {sectionsFetch} from "../../store/actions/catalog-actions/catalogActions";
 
 /** Creates and renders a Products[] having the same "section" KEY
@@ -23,39 +29,41 @@ import {Route, Switch} from "react-router";
 
 const ShowSections : React.FC = () => {
 
-    const selectedCategory = useSelector<AppState,string>( (state) => state.selectedCategory);
     const sections = useSelector<AppState,Section[]>( (state) => state.sections);
-    const selectedSection = useSelector<AppState,string>( (state) => state.selectedSection);
 
     const dispatch = useDispatch();
 
-    useEffect(()=>{
-            dispatch(sectionsFetch(selectedCategory));
-    },[]);
-
     let selectSectionHandler = useCallback((id: string) => (e : React.MouseEvent) => {
-        dispatch(selectSection(id));
+        dispatch(selectSection(id))
+        dispatch(productsFetch(id));
+        dispatch(selectView("products"));
     }, [])
 
+    let handle = useCallback((str : string) => (e : any)=>{
+        dispatch(selectView(str));
+    },[])
+
     return (
-        <div className="Content-wrapper">
-            <h4>{selectedCategory}</h4>
+        <div className="Content-wrapper" id="sections-wrapper">
+            <div className="NavHistory">
+                <h5 onClick={handle("categories")} className="NavLinksSmall">Categories </h5>
+            </div>
+            <ul className="Categories-wrapper">
             {
             sections &&
             sections
                 .map((el : Section ) => {
                     return (
                         <li onClick={selectSectionHandler(el.id)}
-                             className="Section-item"
+                             className="GroupButton-item"
                              key={el.id}
                         >
                             {el.id}
                         </li>
                          )
                     })
-            }
-            {(selectedSection !== "") ? <div>{selectedSection}</div> : null}
-
+           }
+           </ul>
         </div>
     )
 }

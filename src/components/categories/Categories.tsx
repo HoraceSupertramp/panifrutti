@@ -2,7 +2,8 @@ import React, {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppState, Category} from "../../app.types";
 import {NavLink} from "react-router-dom";
-import {categoriesFetch, selectCategory} from "../../store/actions/catalog-actions/catalogActions";
+import {categoriesFetch, sectionsFetch, selectCategory} from "../../store/actions/catalog-actions/catalogActions";
+import {selectView} from "../../store/actions/views-actions";
 
 
 
@@ -19,33 +20,37 @@ import {categoriesFetch, selectCategory} from "../../store/actions/catalog-actio
 const Categories : React.FC = () => {
 
    const categories = useSelector<AppState,Category[]>((state) => state.categories );
-   const selectedCategory = useSelector<AppState,string>( (state) => state.selectedCategory);
+
 
    const dispatch = useDispatch()
 
     useEffect(()=>{
         dispatch(categoriesFetch());
+
     },[])
 
     let selectCategoryHandler = useCallback((id : string) => (e : React.MouseEvent) =>{
         dispatch(selectCategory(id));
+        dispatch(sectionsFetch(id));
+        dispatch(selectView("sections"));
+
     },[])
 
     if (categories) return (
-            <div className="Content-wrapper" id="categories-wrapper">
-                { categories && <h2>CATEGORIE</h2> }
+            <div className="Content-wrapper">
+                <ul className="Categories-wrapper">
                 { categories &&
                   categories
                       .map((el : Category ) => {
                               return ( <li onClick={selectCategoryHandler(el.id)}
-                                       className="Category-item"
+                                       className="GroupButton-item"
                                        key={el.id}>
                                   {el.id}
                                   </li>)
                           }
                       )
                 }
-                { (selectedCategory !== "") ? <div>{selectedCategory}</div> : null }
+                </ul>
             </div>
             )
     else return null;

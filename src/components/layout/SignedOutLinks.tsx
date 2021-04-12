@@ -15,7 +15,7 @@ const SignedOutLinks : React.FC = () => {
 
 
     return (
-            <ul className="TopBarLinks-wrapper">
+            <ul className="SignOutLinks-wrapper">
                 <li onClick={handle("categories")} className="ListMenu-item">Categories</li>
                 <li onClick={handle("about")} className="ListMenu-item">About</li>
                 <li onClick={handle("login")} className="ListMenu-item">LogIn</li>

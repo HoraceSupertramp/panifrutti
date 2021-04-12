@@ -34,7 +34,9 @@
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.5.0",
+    "@types/core-js": "^2.5.4",
     "@types/redux-thunk": "^2.1.0",
+    "core-js": "^3.10.1",
     "firebase": "^8.2.5",
     "firebase-admin": "^9.4.2",
     "firebase-tools": "^9.3.0",

@@ -2,3 +2,6 @@ html,body {
     margin: 0;
     background: white;
 }
+div.firebase-emulator-warning {
+    display: none;
+}

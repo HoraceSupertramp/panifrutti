@@ -7,8 +7,9 @@ export interface AppState {
     selectedSection: string;        //sezione scelta
     products: Product[];            //lista di prodotti
     selectedProduct: string;       //prodotto singolo
-    cart: SelectedProduct[];        //lista di prodotti selezionati
-    selectedView: string            //vista da renderizzare
+    selectedView: string;            //vista da renderizzare
+    sideMenuAppear: boolean;         //gestisce apertura menu laterale
+    cartProducts: CartProduct[];     //lista di prodotti selezionati
 }
 
 export interface Section {
@@ -41,9 +42,11 @@ export interface Order {
     selected: Product[];
 }
 
-export interface SelectedProduct {
-    product: Product[];
+
+export interface CartProduct {
+    product: Product;
     quantity: number;
 }
+
 
 

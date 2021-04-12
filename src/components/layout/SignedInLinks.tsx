@@ -13,8 +13,8 @@ const SignedInLinks : React.FC = () => {
 
     return (
             <ul className="TopBarLinks-wrapper">
-                <li onClick={handle("profile")} className="ListMenu-item">Profile</li>
-                <li onClick={handle("loguot")} className="ListMenu-item">Logout</li>
+                <li onClick={handle("profile")} className="ProfileLink-item">Profile</li>
+                <li onClick={handle("loguot")} className="ProfileLink-item">Logout</li>
             </ul>
     );
 }

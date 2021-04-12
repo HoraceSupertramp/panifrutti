@@ -9,3 +9,16 @@ export const selectedViewReducer = (state = "", action : ViewsActions) => {
         default : return state;
     }
 }
+
+
+export const sideMenuAppearReducer = (state = false, action : ViewsActions) => {
+    switch (action.type) {
+        case "OPEN_SIDE_MENU" :
+            return action.sideMenuAppear;
+
+        case "CLOSE_SIDE_MENU" :
+            return action.sideMenuAppear;
+
+        default : return state;
+    }
+}

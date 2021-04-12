@@ -11,51 +11,121 @@ body{
     min-height: 100%;
 }
 
+li {
+    cursor: pointer;
+    list-style-type: none;
+}
+
+
 /************** APP *****************/
 
 .App-container{
     position: relative;
-    height: 100%;
+}
+
+.Main-wrapper {
+    position: absolute;
+    top: 3em;
     width: 100%;
     display: flex;
-    justify-content:center;
-    align-items: center;
-}
-
-.App-wrapper {
-    position: relative;
-    display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    width: 90%;
+    justify-content: center;
+    padding-top: 3em;
+}
+.Content-wrapper{
+    position: relative;
+    //background: darkkhaki;
+    flex: 1 1 auto;
+    min-height: 18em;
+    min-width: 75%;
+    margin-bottom: 2em;
 }
 
-.TitlePage {
+.NavHistory{
+    position: absolute;
+    top: -1.8em;
+    width: 100%;
+    display: flex;
+
 }
 
+.NavLinksSmall{
+    cursor: pointer;
+    margin: 0 1%;
+}
 
 /********* NAV MENU BAR *********/
 
 .TopBar-wrapper {
     position: fixed;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding-top: 1em;
-    top: 0;
-    width: 100vh;
+    top: 3em;
+    width: 36%;
+    height: calc(100% - 6em);
+    background: aquamarine;
+    z-index: 1;
 }
 
-.TopBarLinks-wrapper{
+header {
+    background: antiquewhite;
+    position: fixed;
+    width: 100%;
+    height: 3em;
+    z-index: 1;
     display: flex;
-    flex : 1 1 auto;
-    justify-content: space-around;
-    align-items: center;
 }
+
+.WrapTitle{
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    height: 100%;
+    max-width: 70%;
+    min-width: 50%;
+}
+
+#burger-menu-svg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#cart-button-svg{
+    height: 80%;
+    width: auto;
+}
+
+#title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SquaredButtons{
+    position: relative;
+    min-width: 15%;
+    min-height: 60%;
+}
+
+
+/* ********** ************** */
 
 .ListMenu-item {
-    list-style: none;
+}
+
+.SignOutLinks-wrapper {
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    align-items: center;
+    justify-content: space-around;
+    background: bisque;
+    height: 3em;
+    width: 100%;
+}
+
+.MenuLinks-wrapper{
+
 }
 
 /********* DASHBOARD ***********/
@@ -88,33 +158,114 @@ body{
 
 }
 
+/* ************** CATALOGO *************** */
 
-
-/****** PRODUCTS **********/
-
-.ProductListItem-wrapper{
+.GroupButton-item{
+    flex: 1 1 40%;
+    background: #8785a3;
     display: flex;
-    flex-direction: row;
+    margin: 2%;
     align-items: center;
-    justify-content: flex-start;
+    max-width: 46%;
+    max-height: 46%;
+    justify-content: center;
 }
+
 
 .ShowCase-wrapper{
-
 }
 
-/****** CATEGORIES **********/
+/* ******* CATEGORIES ************** */
 
-.Content-wrapper{
-    flex: 1 1 100%;
+
+.Categories-wrapper{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+
+/* ******* SECTIONS ************** */
+
+.Section-item{
+    position: relative;
+    flex: 1 1 auto;
+    margin: 6% 0;
+    background: grey;
+    min-height: 9em;;
+}
+
+/* ******* PRODUCTS ************** */
+
+.ProductListItems{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 6em;
-    min-width: 27em;
-    min-height: 15em;
 }
 
-.Category-item{
+.ProductListItemDetails{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+.ProductListItem-wrapper{
+}
+
+.MoreDetailsProduct{
+}
+
+
+.ItemInfo{
+    position: absolute;
+    right: 0;
+    width: 50%;
+    left: 50%;
+    height: 50%;
+    padding: 3%;
+}
+
+.ItemImage{
+    position: absolute;
+    background: beige;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ItemAttributes{
+    padding: 3%;
+}
+
+.TEMPimage{
+    background: darkgray;
+    min-width: 80%;
+    min-height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+/** *********** CART ************* */
+
+
+.CartButtonsPanel{
+    position: absolute;
+    background: cadetblue;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
