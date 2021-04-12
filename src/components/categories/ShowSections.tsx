@@ -9,8 +9,6 @@ import {
     selectCategory,
     selectSection
 } from "../../store/actions/catalog-actions/catalogActions";
-import {NavLink} from "react-router-dom";
-import {Route, Switch} from "react-router";
 import {selectView} from "../../store/actions/views-actions";
 //import {sectionsFetch} from "../../store/actions/catalog-actions/catalogActions";
 

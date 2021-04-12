@@ -1,5 +1,4 @@
 import React, {useCallback} from 'react';
-import {NavLink} from "react-router-dom";
 import "../../appCSS.css";
 import {selectView} from "../../store/actions/views-actions";
 import {useDispatch} from "react-redux";

@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppState, Category} from "../../app.types";
-import {NavLink} from "react-router-dom";
 import {categoriesFetch, sectionsFetch, selectCategory} from "../../store/actions/catalog-actions/catalogActions";
 import {selectView} from "../../store/actions/views-actions";
 

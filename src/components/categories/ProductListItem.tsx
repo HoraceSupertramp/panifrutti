@@ -7,7 +7,6 @@ import {
     selectProduct,
     selectSection
 } from "../../store/actions/catalog-actions/catalogActions";
-import {NavLink} from "react-router-dom";
 import {selectView} from "../../store/actions/views-actions";
 import {addProduct} from "../../store/actions/cart-actions/cartActions";
 import CartButtonsPanel from "../cart/CartButtonsPanel";
