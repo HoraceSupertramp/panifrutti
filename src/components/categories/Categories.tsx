@@ -1,9 +1,8 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppState, Category} from "../../app.types";
-import {NavLink} from "react-router-dom";
 import {categoriesFetch, sectionsFetch, selectCategory} from "../../store/actions/catalog-actions/catalogActions";
-import {selectView} from "../../store/actions/views-actions";
+import {selectView} from "../../store/actions/utils-actions";
 
 
 
@@ -17,24 +16,25 @@ import {selectView} from "../../store/actions/views-actions";
  */
 
 
+
 const Categories : React.FC = () => {
 
    const categories = useSelector<AppState,Category[]>((state) => state.categories );
 
 
-   const dispatch = useDispatch()
+   const dispatch = useDispatch();
 
     useEffect(()=>{
         dispatch(categoriesFetch());
 
-    },[])
+    },[]);
 
     let selectCategoryHandler = useCallback((id : string) => (e : React.MouseEvent) =>{
         dispatch(selectCategory(id));
         dispatch(sectionsFetch(id));
         dispatch(selectView("sections"));
 
-    },[])
+    },[]);
 
     if (categories) return (
             <div className="Content-wrapper">
@@ -45,14 +45,14 @@ const Categories : React.FC = () => {
                               return ( <li onClick={selectCategoryHandler(el.id)}
                                        className="GroupButton-item"
                                        key={el.id}>
-                                  {el.id}
+                                  <div className="TEMPimage">{el.id}</div>
                                   </li>)
                           }
                       )
                 }
                 </ul>
             </div>
-            )
+            );
     else return null;
 
 }

@@ -8,9 +8,10 @@ import {
 } from "./categories-reducers/reducersCatalog";
 
 import {
+    cartPopupAppearAppearReducer,
     selectedViewReducer,
     sideMenuAppearReducer
-} from "./views-reducers";
+} from "./viewsReducers";
 import {cartProductsReducer} from "./cart-reducers/reducersCart";
 
 
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
     selectedProduct: selectedProductReducer,
     sideMenuAppear: sideMenuAppearReducer,
     cartProducts: cartProductsReducer,
+    cartPopupAppear: cartPopupAppearAppearReducer
 })
 
 

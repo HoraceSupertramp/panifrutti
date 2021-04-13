@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from "react";
-import ProductCard from "./ProductListItem";
-import ProductListItem from "./ProductListItem";
+import ProductCard from "./ProductList";
+import ProductList from "./ProductList";
 import {AppState, Category, Product, Section} from "../../app.types";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -9,9 +9,8 @@ import {
     selectCategory,
     selectSection
 } from "../../store/actions/catalog-actions/catalogActions";
-import {NavLink} from "react-router-dom";
-import {Route, Switch} from "react-router";
-import {selectView} from "../../store/actions/views-actions";
+
+import {selectView} from "../../store/actions/utils-actions";
 //import {sectionsFetch} from "../../store/actions/catalog-actions/catalogActions";
 
 /** Creates and renders a Products[] having the same "section" KEY
@@ -58,7 +57,7 @@ const ShowSections : React.FC = () => {
                              className="GroupButton-item"
                              key={el.id}
                         >
-                            {el.id}
+                            <div className="TEMPimage">{el.id}</div>
                         </li>
                          )
                     })

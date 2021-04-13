@@ -10,6 +10,7 @@ export interface AppState {
     selectedView: string;            //vista da renderizzare
     sideMenuAppear: boolean;         //gestisce apertura menu laterale
     cartProducts: CartProduct[];     //lista di prodotti selezionati
+    cartPopupAppear: boolean;        //gestisce apertura carrello popup
 }
 
 export interface Section {

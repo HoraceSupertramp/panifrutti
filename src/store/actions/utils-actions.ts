@@ -1,6 +1,8 @@
 const SELECT_VIEW = "SELECT_VIEW";
 const OPEN_SIDE_MENU = "OPEN_SIDE_MENU";
 const CLOSE_SIDE_MENU = "CLOSE_SIDE_MENU";
+const OPEN_CART_POPUP = "OPEN_CART_POPUP";
+const CLOSE_CART_POPUP = "CLOSE_CART_POPUP";
 
 export interface SelectView {
     type: typeof SELECT_VIEW,
@@ -15,6 +17,16 @@ export interface OpenSideMenu {
 export interface CloseSideMenu {
     type: typeof CLOSE_SIDE_MENU,
     sideMenuAppear: boolean
+}
+
+export interface OpenCartPopup {
+    type: typeof OPEN_CART_POPUP,
+    cartPopupAppear: boolean
+}
+
+export interface CloseCartPopup {
+    type: typeof  CLOSE_CART_POPUP,
+    cartPopupAppear: boolean
 }
 
 export const selectView = (view_name : string) => {
@@ -37,4 +49,18 @@ export const closeSideMenu = () => {
     }
 }
 
-export type ViewsActions = SelectView | OpenSideMenu | CloseSideMenu ;
+export const openCartPopup = () => {
+    return {
+        type: OPEN_CART_POPUP,
+        cartPopupAppear: true
+    }
+}
+
+export const closeCartPopup = () => {
+    return {
+        type: CLOSE_CART_POPUP,
+        cartPopupAppear: false
+    }
+}
+
+export type UtilsActions = SelectView | OpenSideMenu | CloseSideMenu | OpenCartPopup | CloseCartPopup  ;
