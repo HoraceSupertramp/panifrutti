@@ -8,17 +8,19 @@ const CartComponent : React.FC = () => {
 
     return (
     <div className="Cart-container">
-       <h1>CART</h1>
+        <div className="TitleCart">
+        <h1 id="cart-title" >CART</h1>
         {(cart.length == 0)
-            ? <h2>Select products</h2>
-            : <div className="CartList-container">
-                <h2> Selected products:</h2>
+            ? <h2 className="CartSubtitle">Select products</h2>
+            : null}
+        </div>
+        {(cart.length !== 0) &&
+            <div className="CartList-container">
                 <ul className="CartList">
                 {cart.map((el : CartProduct) => (
                     <li className="CartListItem" key={el.product.id+"cart"}>
                         <div className="ListItemInforms" id="image-cart-list-item">
                             <div className="TEMPimage">{el.product.image}</div>
-
                         </div>
                         <div className="ListItemInforms" id="details-wrapper-cart-list-item">
                             <h6>{el.product.id}</h6>

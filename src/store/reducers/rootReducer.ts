@@ -1,5 +1,9 @@
-import {combineReducers} from "redux";
+import {
+    combineReducers
+} from "redux";
+
 import authReducer from "./auth-reducers/authReducer";
+
 import {
     categoriesReducer, productsReducer,
     sectionsReducer,
@@ -12,7 +16,10 @@ import {
     selectedViewReducer,
     sideMenuAppearReducer
 } from "./viewsReducers";
-import {cartProductsReducer} from "./cart-reducers/reducersCart";
+
+import {
+    cartProductsReducer
+} from "./cart-reducers/reducersCart";
 
 
 

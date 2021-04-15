@@ -35,23 +35,25 @@ const Login : React.FC = (props : any) => {
 
     return (
         <div className="Content-wrapper" id="login-wrapper">
-            <form className="My-form" id="login-Form" onSubmit={handleSubmit}>
-                <h3 className="TitlePage"> LOGIN </h3>
-                <div className="MyFormEl-wrapper">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" onChange={handleChange} required={true}/>
-                </div>
-                <div className="MyFormEl-wrapper">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" onChange={handleChange} required={true}/>
-                </div>
+            <div className="FormWrapper">
+                <form className="My-form" id="login-Form" onSubmit={handleSubmit}>
+                    <h3 className="TitlePage"> LOGIN </h3>
+                    <div className="MyFormEl-wrapper">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id="email" onChange={handleChange} required={true}/>
+                    </div>
+                    <div className="MyFormEl-wrapper">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" onChange={handleChange} required={true}/>
+                    </div>
 
+                    <div className="MyFormEl-wrapper">
+                        <button>LOGIN</button>
+                    </div>
+                </form>
                 <div className="MyFormEl-wrapper">
-                    <button>LOGIN</button>
+                    <div id="firebaseui-auth-container"/>
                 </div>
-            </form>
-            <div className="MyFormEl-wrapper">
-                <div id="firebaseui-auth-container"/>
             </div>
         </div>
     )

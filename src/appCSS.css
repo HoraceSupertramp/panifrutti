@@ -23,6 +23,7 @@ li {
     left: 9%;
     width: 100%;
     display: flex;
+    z-index: 0;
 }
 
 .NavLinksSmall{
@@ -52,7 +53,8 @@ li {
 
 }
 .Content-wrapper{
-    margin: 12% 6%;
+    position: relative;
+    margin: 4em 6%;
     background: burlywood;
     width: 100%;
     display: flex;
@@ -68,7 +70,7 @@ li {
     width: 36%;
     height: calc(100% - 6em);
     background: aquamarine;
-    z-index: 1;
+    z-index: 2;
 }
 
 header {
@@ -78,6 +80,8 @@ header {
     height: 3em;
     z-index: 1;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .WrapTitle{
@@ -86,7 +90,10 @@ header {
     display: flex;
     height: 100%;
     max-width: 70%;
-    min-width: 50%;
+    min-width: 70%;
+    align-items: center;
+    justify-content: flex-start;
+
 }
 
 #burger-menu-svg{
@@ -96,8 +103,16 @@ header {
 }
 
 #cart-button-svg{
-    height: 80%;
-    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+    height: 4vh;
+}
+
+#cart-button-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 9%;
 }
 
 #title{
@@ -114,6 +129,13 @@ header {
     cursor: pointer;
 }
 
+.SideMenuBack{
+    position: fixed;
+    height: 200vh;
+    width: 100vw;
+    background: #3800ff1a;
+    z-index: 1;
+}
 
 /* ********** ************** */
 
@@ -193,7 +215,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    justify-content: left;
+    justify-content: space-between;
 }
 
 
@@ -202,7 +224,7 @@ header {
 .Section-item{
     position: relative;
     flex: 1 1 auto;
-    margin: 6% 0;
+    margin: 3% 0;
     background: grey;
     min-height: 9em;;
 }
@@ -214,12 +236,20 @@ header {
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
-    overflow: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    top: 0;
+    height: 81vh;
+}
+
+.ProductList-wrapper::-webkit-scrollbar{
+    display: none;
 }
 
 .ProductList{
     display: flex;
     flex-direction: column;
+    min-width: 81%;
 }
 
 .ProductListItemDetails{
@@ -260,12 +290,22 @@ header {
     padding: 2%;
 }
 
+
+
 .ClosePopupsButton{
     position: absolute;
     top: 2%;
     right: 2%;
     cursor: pointer;
     z-index: 15;
+}
+
+.ProductCard-back{
+    position: fixed;
+    height: 200vh;
+    width: 100vw;
+    background: #3800ff1a;
+    z-index: -1;
 }
 
 /* *********** LISTS ITEMS ************ */
@@ -336,10 +376,21 @@ header {
     height: 100%;
     position: absolute;
     z-index: 2;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+}
+
+.Cart-container::-webkit-scrollbar{
+    display: none;
 }
 
 .CartList-container{
-    background: aquamarine;
+    position: absolute;
+    top: 9%;
+    overflow-y: scroll;
+    height: 88%;
+    width: 96%;
 }
 
 .CartList::-webkit-scrollbar {
@@ -347,15 +398,46 @@ header {
 }
 
 .CartList{
-    position: absolute;
     background: bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 12%;
+    margin-top: 1%;
 }
 
 .CartListItem{
-
+    display: flex;
     background: burlywood;
-
+    margin: 2%;
 }
+
+.CartPage-container{
+    flex: 1 1 auto;
+    min-height: 66vh;
+}
+
+.TitleCart{
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 72%;
+}
+
+#cart-title{
+    justify-self: center;
+}
+
+.CartSubtitle{
+    position: fixed;
+    top: 15%;
+    margin-top: 1%;
+    z-index: 1;
+}
+
 
 /* ********** CART POPUP ********* */
 
@@ -365,6 +447,7 @@ header {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    top: 0;
 }
 
 .CartPopUp-back{
@@ -380,9 +463,9 @@ header {
     right: 0;
     margin: 0 auto;
     background: beige;
-    width: 71%;
-    height: 66%;
-    top: 12.2%;
+    width: 72%;
+    height: 68%;
+    top: 10%;
     padding: 2%;
 }
 

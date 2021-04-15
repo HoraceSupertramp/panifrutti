@@ -49,5 +49,6 @@ export interface CartProduct {
     quantity: number;
 }
 
+export interface User {
 
-
+}

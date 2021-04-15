@@ -40,32 +40,34 @@ const SignUp : React.FC = (props : any) => {
 
   return (
       <div className="Content-wrapper" id="signup-wrapper">
-          <form className="My-form" id="signup-Form" onSubmit={handleSubmit}>
-              <h3 className="TitlePage"> SIGNUP </h3>
-              <div className="MyFormEl-wrapper">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" id="email" onChange={handleChange} required={true}/>
-              </div>
-              <div className="MyFormEl-wrapper">
-                  <label htmlFor="password">Password</label>
-                  <input type="password" id="password" onChange={handleChange} required={true}/>
-              </div>
-              <div className="MyFormEl-wrapper">
-                  <label htmlFor="first-name">First Name</label>
-                  <input type="text" id="firsName" onChange={handleChange} required={true}/>
-              </div>
-              <div className="MyFormEl-wrapper">
-                  <label htmlFor="last-name">Last Name</label>
-                  <input type="text" id="lastName" onChange={handleChange} required={true}/>
-              </div>
+          <div className="FormWrapper">
+              <form className="My-form" id="signup-Form" onSubmit={handleSubmit}>
+                  <h3 className="TitlePage"> SIGNUP </h3>
+                  <div className="MyFormEl-wrapper">
+                      <label htmlFor="email">Email</label>
+                      <input type="email" id="email" onChange={handleChange} required={true}/>
+                  </div>
+                  <div className="MyFormEl-wrapper">
+                      <label htmlFor="password">Password</label>
+                      <input type="password" id="password" onChange={handleChange} required={true}/>
+                  </div>
+                  <div className="MyFormEl-wrapper">
+                      <label htmlFor="first-name">First Name</label>
+                      <input type="text" id="firsName" onChange={handleChange} required={true}/>
+                  </div>
+                  <div className="MyFormEl-wrapper">
+                      <label htmlFor="last-name">Last Name</label>
+                      <input type="text" id="lastName" onChange={handleChange} required={true}/>
+                  </div>
 
-              <div className="MyFormEl-wrapper">
-                  <button>SIGNUP</button>
-              </div>
+                  <div className="MyFormEl-wrapper">
+                      <button>SIGNUP</button>
+                  </div>
 
-          </form>
-          <div className="MyFormEl-wrapper">
-              <div id="firebaseui-auth-container"/>
+              </form>
+              <div className="MyFormEl-wrapper">
+                  <div id="firebaseui-auth-container"/>
+              </div>
           </div>
       </div>
   );

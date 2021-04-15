@@ -36,6 +36,11 @@ const ProductList : React.FC= () => {
         dispatch(selectView(str));
     },[])
 
+
+    let closeCard = useCallback(() => {
+        dispatch(selectProduct(""))
+    },[]);
+
     let cart = useSelector<AppState,CartProduct[]>((state: AppState) => state.cartProducts)
 
 
@@ -82,6 +87,9 @@ const ProductList : React.FC= () => {
             {
                 (selectedProduct !== "") ? <ProductCard product={item} selectedProduct={selectedProduct}/>
                                          : null
+            }
+            {
+                (selectedProduct !== "") ? <div className="ProductCard-back" onClick={closeCard}/> : null
             }
 
         </div>

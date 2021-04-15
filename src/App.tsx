@@ -14,8 +14,8 @@ import ProductList from "./components/categories/ProductList";
 import {closeSideMenu, openSideMenu, selectView} from "./store/actions/utils-actions";
 import SignedOutLinks from "./components/layout/SignedOutLinks";
 import SignedInLinks from "./components/layout/SignedInLinks";
-import CartComponent from "./components/cart/CartComponent";
 import TopBar from "./components/layout/TopBar";
+import CartPage from "./components/cart/CartPage";
 
 const App : React.FC = () => {
     const activeView = useSelector<AppState,string>(state => state.selectedView)
@@ -46,9 +46,15 @@ const App : React.FC = () => {
 
                 <TopBar/>
 
-                {sideMenuAppear && <nav className="TopBar-wrapper" onClick={closeMenuHandler}>
-                    <SignedInLinks/>
-                </nav>}
+                { sideMenuAppear &&
+                    <nav className="TopBar-wrapper" onClick={closeMenuHandler}>
+                        <SignedInLinks/>
+                    </nav>
+                }
+
+                { sideMenuAppear &&
+                    <div className="SideMenuBack" onClick={closeMenuHandler} />
+                }
 
                 <div className="Main-wrapper">
                     { (activeView === "login") ? <Login/> : null }
@@ -57,7 +63,7 @@ const App : React.FC = () => {
                     { (activeView === "" || activeView ==="categories") ? <Categories/> : null}
                     { (activeView === "sections") ? <ShowSections/> : null}
                     { (activeView === "products") ? <ProductList/> : null}
-                    { (activeView === "cart") ? <CartComponent/> : null }
+                    { (activeView === "cart") ? <CartPage/> : null }
                     {(activeView === "categories" || activeView === "") ? <div className="Content-wrapper"><h1>{activeView}</h1></div> : null}
                 </div>
                 <SignedOutLinks/>

@@ -1,0 +1,10 @@
+//TODO: check types for users, auth
+//TODO: show user's state, user's properties,
+//TODO: manage users state
+//TODO: set rules for user's side READ
+//TODO: set rules for admins state: INSERT,MODIFY,DELETE,READ
+
+//TODO: user's checks:
+//TODO: authentication with firebase
+//TODO: logout from firebase
+

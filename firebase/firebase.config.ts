@@ -17,7 +17,9 @@ const firebaseConfig = (process.env.NODE_ENV === "production") ? {
     measurementId: "G-D39GSGJWSR"
 } : {
     projectId: "emulated-panifrutti",
-    apiKey: "ciao"
+    apiKey: "ciao",
+    authDomain: "panifrutti-45ea1.emulated.com",
+
 }
 
 
@@ -49,4 +51,5 @@ let uiElement = () => ui.start('#firebaseui-auth-container', uiConfig);
 export const firestoreApp = db;
 export const startUi = uiElement;
 
+console.log("AUTH",auth.currentUser);
 
