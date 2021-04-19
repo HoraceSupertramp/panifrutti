@@ -4,7 +4,6 @@ import "firebase/auth"
 import {uiConfig} from "./ui.config";
 const firebaseui = require("firebaseui");
 
-
 //Firebase configuration object
 const firebaseConfig = (process.env.NODE_ENV === "production") ? {
     apiKey: "AIzaSyBxM7PLIOeXZuxgBZU60R43utE5MQfS9G4",
@@ -17,26 +16,22 @@ const firebaseConfig = (process.env.NODE_ENV === "production") ? {
     measurementId: "G-D39GSGJWSR"
 } : {
     projectId: "emulated-panifrutti",
-    apiKey: "ciao",
+    apiKey: "AIzaSyBxPIPPOeXZuxgPLUTOR43utPAPERINO",
     authDomain: "panifrutti-45ea1.emulated.com",
-
 }
-
-
-
 
 // Initialize Firebase
 const myapp = firebase.initializeApp(firebaseConfig);
 
-// Inizializza Firebase Authentication
+// Instantiate firebase.auth
 const auth = firebase.auth(myapp);
 //frbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then();
 
-// Inizializza Firestore
+// Instantiate firebase.firestore
 const  db = firebase.firestore();
 
 
-// Reindirizza le app sui rispettivi emulatori solo in modalità di sviluppo
+// Activate emulators
 if (process.env.NODE_ENV === "development") {
     // AUTH
     auth.useEmulator("http://localhost:9099");
@@ -45,11 +40,10 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-let uiElement = () => ui.start('#firebaseui-auth-container', uiConfig);
+//let uiElement = () => ui.start('#firebaseui-auth-container', uiConfig);
+//export const startUi = uiElement;
 
 export const firestoreApp = db;
-export const startUi = uiElement;
+export const authFB = auth;
 
-console.log("AUTH",auth.currentUser);
 

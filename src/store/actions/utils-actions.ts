@@ -63,4 +63,9 @@ export const closeCartPopup = () => {
     }
 }
 
-export type UtilsActions = SelectView | OpenSideMenu | CloseSideMenu | OpenCartPopup | CloseCartPopup  ;
+export type UtilsActions =
+    SelectView |
+    OpenSideMenu |
+    CloseSideMenu |
+    OpenCartPopup |
+    CloseCartPopup  ;

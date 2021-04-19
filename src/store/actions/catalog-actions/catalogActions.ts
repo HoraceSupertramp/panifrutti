@@ -1,4 +1,4 @@
-import {firestoreApp} from "../../../../firebase/firebase.config";
+import {firestoreApp} from "../../../../firebase/configs/firebase.config";
 import {Category, Product, Section} from "../../../app.types";
 
 const CATEGORIES_FETCH_END = "CATEGORIES_FETCH_END";
@@ -13,27 +13,22 @@ export interface CategoriesFetchEnd {
     type : typeof CATEGORIES_FETCH_END;
     categories : Category[];
 }
-
 export interface SelectCategory {
     type : typeof SET_SELECTED_CATEGORY;
     id: string;
 }``
-
 export interface SectionsFetchEnd {
     type : typeof SECTIONS_FETCH_END;
     sections : Section[];
 }
-
 export interface SelectSection {
     type : typeof SET_SELECTED_SECTION;
     id: string;
 }
-
 export interface ProductsFetchEnd {
     type : typeof PRODUCTS_FETCH_END;
     products : Product[];
 }
-
 export interface SelectProduct {
     type : typeof SET_SELECTED_PRODUCT;
     id: string;
@@ -131,6 +126,8 @@ export const selectProduct = (product_id : string) => {
         id: product_id
     }
 }
+
+
 
 
 export type CatalogActions = CategoriesFetchEnd |

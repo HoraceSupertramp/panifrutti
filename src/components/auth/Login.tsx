@@ -1,20 +1,23 @@
 import React, {useCallback, useEffect, useState} from "react";
 import 'firebaseui/dist/firebaseui.css'
-import {startUi} from "../../../firebase/firebase.config";
-
-
+import {authFB} from "../../../firebase/configs/firebase.config";
+import {loginWithEmailAndPassword, setUserToken} from "../../store/actions/firebase-actions";
+import {selectView} from "../../store/actions/utils-actions";
+import {useDispatch} from "react-redux";
+import {UserCredential} from "@firebase/auth-types";
 
 type AccessCredentials = {
     email: string,
     password: string,
 }
 
-
-const Login : React.FC = (props : any) => {
+const Login : React.FC = () => {
     const [credentials,setCredentials] = useState<AccessCredentials>({
         email : "",
         password: "",
     });
+
+    let dispatch = useDispatch();
 
     let handleChange = useCallback((e)=>{
         e.preventDefault();
@@ -26,12 +29,15 @@ const Login : React.FC = (props : any) => {
         );
     },[credentials])
 
+    let handleView = useCallback(()=>{
+        dispatch(selectView("categories"));
+    },[])
+
+
     let handleSubmit = useCallback( (e) => {
         e.preventDefault();
-        console.log(credentials);
+        dispatch(loginWithEmailAndPassword(credentials))
     },[credentials])
-
-    useEffect(()=>startUi());
 
     return (
         <div className="Content-wrapper" id="login-wrapper">
@@ -51,9 +57,9 @@ const Login : React.FC = (props : any) => {
                         <button>LOGIN</button>
                     </div>
                 </form>
-                <div className="MyFormEl-wrapper">
+                {/*<div className="MyFormEl-wrapper">
                     <div id="firebaseui-auth-container"/>
-                </div>
+                </div>*/}
             </div>
         </div>
     )

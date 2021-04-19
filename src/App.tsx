@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "./app.types";
 import "./appCSS.css";
@@ -16,15 +16,15 @@ import SignedOutLinks from "./components/layout/SignedOutLinks";
 import SignedInLinks from "./components/layout/SignedInLinks";
 import TopBar from "./components/layout/TopBar";
 import CartPage from "./components/cart/CartPage";
+import {authFB} from "../firebase/configs/firebase.config";
+import {logoutUser, setUserToken} from "./store/actions/firebase-actions";
 
 const App : React.FC = () => {
-    const activeView = useSelector<AppState,string>(state => state.selectedView)
-    const selectedCategory = useSelector<AppState,string>( (state) => state.selectedCategory);
-    const sideMenuAppear = useSelector<AppState,boolean>( (state) => state.sideMenuAppear)
-
+    const activeView = useSelector<AppState,string>((state : AppState) => state.selectedView)
+    const sideMenuAppear = useSelector<AppState,boolean>( (state : AppState) => state.sideMenuAppear)
+    const userToken = useSelector<AppState,string>( (state : AppState) => state.userToken);
 
     let dispatch = useDispatch();
-
 
     let handleView = useCallback((str : string) => (e : any)=>{
         e.preventDefault();
@@ -41,18 +41,40 @@ const App : React.FC = () => {
         dispatch(closeSideMenu());
     },[]);
 
+     let setUserTokenHandler = useCallback((str?)=>{
+        dispatch(setUserToken(str));
+    },[]);
+
+    let handleLogout = useCallback(() => {
+        dispatch(logoutUser());
+        dispatch(selectView(""));
+    },[])
+
+    authFB.onAuthStateChanged((user) => {
+            if (user) {
+                console.log("user sign in");
+            }
+            else {
+                console.log("no user");
+            }
+        }
+    )
+
     return (
             <div className="App-container">
 
+                <div className="Test">
+                    TOKEN: {userToken}
+                </div>
                 <TopBar/>
 
-                { sideMenuAppear &&
+                { (sideMenuAppear && (userToken != "")) &&
                     <nav className="TopBar-wrapper" onClick={closeMenuHandler}>
                         <SignedInLinks/>
                     </nav>
                 }
 
-                { sideMenuAppear &&
+                { (sideMenuAppear && (userToken != "")) &&
                     <div className="SideMenuBack" onClick={closeMenuHandler} />
                 }
 
@@ -66,7 +88,12 @@ const App : React.FC = () => {
                     { (activeView === "cart") ? <CartPage/> : null }
                     {(activeView === "categories" || activeView === "") ? <div className="Content-wrapper"><h1>{activeView}</h1></div> : null}
                 </div>
+
                 <SignedOutLinks/>
+
+                <button  className="ButtonTest" onClick={handleLogout}>LOGOUT</button>
+                <button className="ButtonTest2" onClick={()=>console.log(authFB.currentUser)}>USER LOGGED</button>
+
             </div>
     )
 }

@@ -1,6 +1,5 @@
 export interface AppState {
-    auth: object;
-    user: object;                   //utente
+    userToken: string;
     categories: Category[];         //categorie generali
     selectedCategory: string;       //categoria selezionata
     sections: Section[];            //sotto categorie
@@ -49,6 +48,7 @@ export interface CartProduct {
     quantity: number;
 }
 
-export interface User {
-
+export interface LocalUserCredentials {
+    email: string,
+    password: string,
 }

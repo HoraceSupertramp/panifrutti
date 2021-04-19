@@ -1,7 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {startUi} from "../../../firebase/firebase.config";
-
-
+import {authFB} from "../../../firebase/configs/firebase.config";
+import {UserCredential} from "@firebase/auth-types";
+import {selectView} from "../../store/actions/utils-actions";
+import {useDispatch} from "react-redux";
+import {setUserToken} from "../../store/actions/firebase-actions";
 
 type AccessCredentials = {
     email: string,
@@ -10,7 +12,7 @@ type AccessCredentials = {
     lastName: string
 }
 
-const SignUp : React.FC = (props : any) => {
+const SignUp : React.FC = () => {
     const [credentials,setCredentials] = useState<AccessCredentials>({
         email : "",
         password: "",
@@ -18,10 +20,8 @@ const SignUp : React.FC = (props : any) => {
         lastName: "",
     });
 
-    useEffect(()=>{
-            startUi();
-        }
-    )
+    let dispatch = useDispatch();
+
 
     let handleChange = useCallback((e)=>{
         e.preventDefault();
@@ -33,9 +33,41 @@ const SignUp : React.FC = (props : any) => {
         );
     },[credentials])
 
+    let handleView = useCallback(()=>{
+        dispatch(selectView("categories"));
+    },[])
+
+
+    authFB.onAuthStateChanged((user) => {
+            if (user) {
+                console.log("user sign in");
+            }
+            else {
+                console.log("no user");
+            }
+        }
+    )
+
     let handleSubmit = useCallback( (e) => {
-        e.preventDefault();
-        console.log(credentials);
+            e.preventDefault();
+            authFB.createUserWithEmailAndPassword(credentials.email, credentials.password)
+                .then((usr_cred : UserCredential ) => {
+                    let tmp = usr_cred.user?.uid
+                    if(tmp) {
+                          dispatch((setUserToken(tmp)));
+                          handleView();
+                    }
+                })
+                .catch(error => {
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    if (errorCode == 'auth/weak-password') {
+                        alert('The password is too weak.');
+                    } else {
+                        alert(errorMessage);
+                    }
+                    console.log(error);
+                })
     },[credentials])
 
   return (
@@ -65,9 +97,9 @@ const SignUp : React.FC = (props : any) => {
                   </div>
 
               </form>
-              <div className="MyFormEl-wrapper">
+              {/*<div className="MyFormEl-wrapper">
                   <div id="firebaseui-auth-container"/>
-              </div>
+              </div>*/}
           </div>
       </div>
   );

@@ -2,7 +2,6 @@ import {
     combineReducers
 } from "redux";
 
-import authReducer from "./auth-reducers/authReducer";
 
 import {
     categoriesReducer, productsReducer,
@@ -20,11 +19,12 @@ import {
 import {
     cartProductsReducer
 } from "./cart-reducers/reducersCart";
+import {userTokenReducer} from "./firebase-reducers/firebaseAuthReducers";
 
 
 
 const rootReducer = combineReducers({
-    auth: authReducer,
+    userToken: userTokenReducer,
     selectedView: selectedViewReducer,
     categories: categoriesReducer,
     selectedCategory: selectedCategoryReducer,
