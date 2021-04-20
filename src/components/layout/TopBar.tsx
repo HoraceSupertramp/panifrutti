@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {openCartPopup, openSideMenu, selectView} from "../../store/actions/utils-actions";
+import {openCartPopup, openSideMenu, selectView} from "../../store/actions/global-actions";
 import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../../app.types";
 import CartPopUp from "../cart/CartPopUp";

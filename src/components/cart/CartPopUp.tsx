@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import CartComponent from "./CartComponent";
 import {useDispatch} from "react-redux";
-import {closeCartPopup} from "../../store/actions/utils-actions";
+import {closeCartPopup} from "../../store/actions/global-actions";
 
 const CartPopUp : React.FC = () => {
 

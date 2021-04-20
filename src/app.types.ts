@@ -1,4 +1,4 @@
-export interface AppState {
+export type AppState = {
     userToken: string;
     categories: Category[];         //categorie generali
     selectedCategory: string;       //categoria selezionata
@@ -10,14 +10,14 @@ export interface AppState {
     sideMenuAppear: boolean;         //gestisce apertura menu laterale
     cartProducts: CartProduct[];     //lista di prodotti selezionati
     cartPopupAppear: boolean;        //gestisce apertura carrello popup
-}
+};
 
-export interface Section {
+export type Section = {
     id : string;
     image? : string;
 }
 
-export interface Product {
+export type Product = {
     id: string;
     available?: boolean;
     description?: string;
@@ -30,25 +30,25 @@ export interface Product {
 }
 
 
-export interface Category {
+export type Category = {
     id: string;
     image?: any;
     isActive?: boolean;
 }
 
-export interface Order {
+export type Order = {
     user: object;
     total: number;
     selected: Product[];
 }
 
 
-export interface CartProduct {
+export type CartProduct = {
     product: Product;
     quantity: number;
 }
 
-export interface LocalUserCredentials {
+export type LocalUserCredentials = {
     email: string,
     password: string,
 }

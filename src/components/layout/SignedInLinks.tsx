@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react';
-import {selectView} from "../../store/actions/utils-actions";
+import {logoutUser, selectView} from "../../store/actions/global-actions";
 import {useDispatch} from "react-redux";
 import {authFB} from "../../../firebase/configs/firebase.config";
-import {logoutUser, setUserToken} from "../../store/actions/firebase-actions";
+import { setUserToken} from "../../store/actions/firebase-actions";
 
 const SignedInLinks : React.FC = () => {
 

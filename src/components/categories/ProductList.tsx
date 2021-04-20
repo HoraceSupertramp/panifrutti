@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     selectProduct,
 } from "../../store/actions/catalog-actions/catalogActions";
-import {selectView} from "../../store/actions/utils-actions";
+import {selectView} from "../../store/actions/global-actions";
 import CartButtonsPanel from "../cart/CartButtonsPanel";
 import ProductCard from "../layout/ProductCard";
 

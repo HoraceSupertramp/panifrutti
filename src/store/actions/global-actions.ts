@@ -1,8 +1,12 @@
+import {initState} from "../reducers/rootReducer";
+import {authFB} from "../../../firebase/configs/firebase.config";
+
 const SELECT_VIEW = "SELECT_VIEW";
 const OPEN_SIDE_MENU = "OPEN_SIDE_MENU";
 const CLOSE_SIDE_MENU = "CLOSE_SIDE_MENU";
 const OPEN_CART_POPUP = "OPEN_CART_POPUP";
 const CLOSE_CART_POPUP = "CLOSE_CART_POPUP";
+const LOGOUT_USER = "LOGOUT_USER";
 
 export interface SelectView {
     type: typeof SELECT_VIEW,
@@ -63,7 +67,26 @@ export const closeCartPopup = () => {
     }
 }
 
-export type UtilsActions =
+export const logoutUser = () => {
+    return (dispatch: any) => {
+        authFB.signOut()
+            .then(() =>{
+                dispatch(logoutSuccess())
+        })
+            .catch((error: any) => window.alert(error))
+
+    }
+}
+
+const logoutSuccess = () => {
+    return {
+        type: LOGOUT_USER,
+        defaultState: initState
+    }
+}
+
+
+export type GlobalActions =
     SelectView |
     OpenSideMenu |
     CloseSideMenu |

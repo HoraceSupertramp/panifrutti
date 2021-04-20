@@ -11,13 +11,13 @@ import Login from "./components/auth/Login";
 import SignUp from "./components/auth/SignUp";
 import ShowSections from "./components/categories/ShowSections";
 import ProductList from "./components/categories/ProductList";
-import {closeSideMenu, openSideMenu, selectView} from "./store/actions/utils-actions";
+import {closeSideMenu, logoutUser, openSideMenu, selectView} from "./store/actions/global-actions";
 import SignedOutLinks from "./components/layout/SignedOutLinks";
 import SignedInLinks from "./components/layout/SignedInLinks";
 import TopBar from "./components/layout/TopBar";
 import CartPage from "./components/cart/CartPage";
 import {authFB} from "../firebase/configs/firebase.config";
-import {logoutUser, setUserToken} from "./store/actions/firebase-actions";
+import {setUserToken} from "./store/actions/firebase-actions";
 
 const App : React.FC = () => {
     const activeView = useSelector<AppState,string>((state : AppState) => state.selectedView)
@@ -47,7 +47,6 @@ const App : React.FC = () => {
 
     let handleLogout = useCallback(() => {
         dispatch(logoutUser());
-        dispatch(selectView(""));
     },[])
 
     authFB.onAuthStateChanged((user) => {

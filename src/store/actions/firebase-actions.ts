@@ -1,7 +1,7 @@
 import {authFB} from "../../../firebase/configs/firebase.config";
 import {UserCredential} from "@firebase/auth-types";
-import {LocalUserCredentials} from "../../app.types";
-import {selectView} from "./utils-actions";
+import {AppState, LocalUserCredentials} from "../../app.types";
+import {selectView} from "./global-actions";
 
 const SET_USER_TOKEN = "SET_USER_TOKEN";
 const LOGIN_WITH_EP = "LOGIN_WITH_EP";
@@ -52,6 +52,7 @@ export interface LogoutUser {
 export interface LogoutUserSuccess {
     type: typeof LOGOUT_USER_SUCCESS;
     userToken: string;
+
 }
 export interface LogoutUserFailure{
     type: typeof LOGOUT_USER_FAILURE;
@@ -73,7 +74,6 @@ export const loginWithEmailAndPassword = (credentials: LocalUserCredentials) => 
                 let tmp = usr_cred.user?.uid
                 if(tmp) {
                     dispatch(loginSuccess(tmp))
-
                 }
             })
             .catch((error : any) => {
@@ -100,22 +100,40 @@ const loginFailure = (error: any) => {
     }
 }
 
-export const signupWithEmailAndPassword= () => {
+export const signupWithEmailAndPassword= (credentials: LocalUserCredentials) => {
     return (dispatch : any) => {
-        authFB
-    }
-}
-const signupSuccess = () => {}
-const signupFailure = () => {}
+        authFB.createUserWithEmailAndPassword(credentials.email, credentials.password)
+            .then((usr_cred : UserCredential ) => {
+                let tmp = usr_cred.user?.uid
+                if(tmp) {
+                    dispatch(signupSuccess(tmp))
 
-export const logoutUser = () => {
-    return (dispatch : any) =>{
-        authFB
-            .signOut()
-            .then(() => dispatch(setUserToken("")))
-            .catch((err) => console.log(err))
+                }
+            })
+            .catch((error : any) => {
+                dispatch(signupFailure(error))
+            })
     }
 }
+const signupSuccess = (str: string ) => {
+    return (dispatch : any) =>{
+        dispatch((setUserToken(str)));
+        dispatch((selectView("categories")))
+    }
+}
+const signupFailure = (error: any) => {
+    return (dispatch : any) => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        if (errorCode == 'auth/wrong-password') {
+            alert('Wrong password.');
+        } else {
+            alert(errorMessage);
+        }
+        dispatch(setUserToken(""))
+    }
+}
+
 
 export type FirebaseActions =
     SetUserToken |

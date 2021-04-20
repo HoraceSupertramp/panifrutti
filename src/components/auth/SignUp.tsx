@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {authFB} from "../../../firebase/configs/firebase.config";
 import {UserCredential} from "@firebase/auth-types";
-import {selectView} from "../../store/actions/utils-actions";
+import {selectView} from "../../store/actions/global-actions";
 import {useDispatch} from "react-redux";
 import {setUserToken} from "../../store/actions/firebase-actions";
 

@@ -8,8 +8,6 @@ export const userTokenReducer = (state = "", action : FirebaseActions) => {
             return action.userToken
         case "SIGNUP_WITH_EP":
             return action.userToken
-        case "LOGOUT_USER":
-            return action.userToken
         default : return state;
     }
 }

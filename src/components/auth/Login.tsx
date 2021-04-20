@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import 'firebaseui/dist/firebaseui.css'
 import {authFB} from "../../../firebase/configs/firebase.config";
 import {loginWithEmailAndPassword, setUserToken} from "../../store/actions/firebase-actions";
-import {selectView} from "../../store/actions/utils-actions";
+import {selectView} from "../../store/actions/global-actions";
 import {useDispatch} from "react-redux";
 import {UserCredential} from "@firebase/auth-types";
 

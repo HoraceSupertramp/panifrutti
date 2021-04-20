@@ -10,7 +10,7 @@ import {
     selectSection
 } from "../../store/actions/catalog-actions/catalogActions";
 
-import {selectView} from "../../store/actions/utils-actions";
+import {selectView} from "../../store/actions/global-actions";
 //import {sectionsFetch} from "../../store/actions/catalog-actions/catalogActions";
 
 /** Creates and renders a Products[] having the same "section" KEY
