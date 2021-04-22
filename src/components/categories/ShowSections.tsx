@@ -10,7 +10,7 @@ import {
     selectSection
 } from "../../store/actions/catalog-actions/catalogActions";
 
-import {selectView} from "../../store/actions/global-actions";
+import {selectView} from "../../store/actions/rootActions";
 //import {sectionsFetch} from "../../store/actions/catalog-actions/catalogActions";
 
 /** Creates and renders a Products[] having the same "section" KEY
@@ -29,12 +29,15 @@ import {selectView} from "../../store/actions/global-actions";
 const ShowSections : React.FC = () => {
 
     const sections = useSelector<AppState,Section[]>( (state) => state.sections);
+    const selectedSection = useSelector<AppState,string>( (state) => state.selectedSection)
 
     const dispatch = useDispatch();
 
-    let selectSectionHandler = useCallback((id: string) => (e : React.MouseEvent) => {
-        dispatch(selectSection(id))
-        dispatch(productsFetch(id));
+    let selectSectionHandler = useCallback((sec_id: string) => (e : React.MouseEvent) => {
+        if (sec_id !== selectedSection) {
+            dispatch(selectSection(sec_id))
+            dispatch(productsFetch(sec_id));
+        }
         dispatch(selectView("products"));
     }, [])
 
@@ -51,13 +54,13 @@ const ShowSections : React.FC = () => {
             {
             sections &&
             sections
-                .map((el : Section ) => {
+                .map((sec : Section ) => {
                     return (
-                        <li onClick={selectSectionHandler(el.id)}
+                        <li onClick={selectSectionHandler(sec.id)}
                              className="GroupButton-item"
-                             key={el.id}
+                             key={sec.id}
                         >
-                            <div className="TEMPimage">{el.id}</div>
+                            <div className="TEMPimage">{sec.id}</div>
                         </li>
                          )
                     })

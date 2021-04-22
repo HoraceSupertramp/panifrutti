@@ -1,4 +1,4 @@
-import {firestoreApp} from "../../../../firebase/configs/firebase.config";
+import {firestoreFB} from "../../../../firebase/configs/firebase.config";
 import {Category, Product, Section} from "../../../app.types";
 
 const CATEGORIES_FETCH_END = "CATEGORIES_FETCH_END";
@@ -37,7 +37,7 @@ export interface SelectProduct {
 
 export const categoriesFetch = () => {
     return (dispatch: any) => {
-        firestoreApp.collection("catalog")
+        firestoreFB.collection("catalog")
             .get()
             .then((snapshot) => {
                 const result = snapshot.docs.map((doc): Category => ({
@@ -46,6 +46,11 @@ export const categoriesFetch = () => {
                 }));
                 dispatch(categoriesFetchEnd(result));
             })
+            .catch((err) => {
+                let code = err.code;
+                let message = err.message;
+                console.log(code,message)
+            });
     }
 }
 
@@ -67,7 +72,7 @@ export const selectCategory = (id : string) => {
 export const sectionsFetch = (sect_id : string) => {
     return (dispatch: any) => {
         if (sect_id !== "") {
-            firestoreApp.collection(sect_id)
+            firestoreFB.collection(sect_id)
                 .get()
                 .then((snapshot) => {
                     const result = snapshot.docs.map((doc) : Section => ({
@@ -76,6 +81,11 @@ export const sectionsFetch = (sect_id : string) => {
                     }));
                     dispatch(sectionsFetchEnd(result));
                 })
+                .catch((err) => {
+                    let code = err.code;
+                    let message = err.message;
+                    console.log(code,message)
+                });
         }
     }
 }
@@ -98,7 +108,7 @@ export const selectSection = (section_id : string) => {
 export const productsFetch = (prod_id : string) => {
     return (dispatch: any) => {
         if (prod_id !== "") {
-            firestoreApp.collection(prod_id)
+            firestoreFB.collection(prod_id)
                 .get()
                 .then((snapshot) => {
                     const result = snapshot.docs.map((doc) : Product => {
@@ -109,6 +119,11 @@ export const productsFetch = (prod_id : string) => {
                     });
                     dispatch(productsFetchEnd(result));
                 })
+                .catch((err) => {
+                    let code = err.code;
+                    let message = err.message;
+                    console.log(code,message)
+                });
         }
     }
 }

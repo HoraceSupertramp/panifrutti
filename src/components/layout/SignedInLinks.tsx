@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react';
-import {logoutUser, selectView} from "../../store/actions/global-actions";
+import {logoutUser, selectView} from "../../store/actions/rootActions";
 import {useDispatch} from "react-redux";
 import {authFB} from "../../../firebase/configs/firebase.config";
-import { setUserToken} from "../../store/actions/firebase-actions";
+import { setUserToken} from "../../store/actions/firebase-actions/firebaseActionsRdx";
 
 const SignedInLinks : React.FC = () => {
 
@@ -16,7 +16,6 @@ const SignedInLinks : React.FC = () => {
 
     let handleLogout = useCallback(() => {
         dispatch(logoutUser());
-        dispatch(selectView(""));
     },[])
 
     return (

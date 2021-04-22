@@ -72,7 +72,7 @@ export const logoutUser = () => {
         authFB.signOut()
             .then(() =>{
                 dispatch(logoutSuccess())
-            })
+        })
             .catch((error: any) => window.alert(error))
 
     }
@@ -86,7 +86,7 @@ const logoutSuccess = () => {
 }
 
 
-export type GlobalActions =
+export type RootActions =
     SelectView |
     OpenSideMenu |
     CloseSideMenu |

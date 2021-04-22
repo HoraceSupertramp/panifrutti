@@ -1,7 +1,9 @@
 import React, {useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "./app.types";
-import "./appCSS.css";
+import "./css/appCSS.css";
+import "./css/authCSS.css";
+import "./css/dashboardCSS.css"
 import Home from "./components/Home";
 import Categories from "./components/categories/Categories";
 import About from "./components/About";
@@ -11,13 +13,14 @@ import Login from "./components/auth/Login";
 import SignUp from "./components/auth/SignUp";
 import ShowSections from "./components/categories/ShowSections";
 import ProductList from "./components/categories/ProductList";
-import {closeSideMenu, logoutUser, openSideMenu, selectView} from "./store/actions/global-actions";
+import {closeSideMenu, logoutUser, openSideMenu, selectView} from "./store/actions/rootActions";
 import SignedOutLinks from "./components/layout/SignedOutLinks";
 import SignedInLinks from "./components/layout/SignedInLinks";
 import TopBar from "./components/layout/TopBar";
 import CartPage from "./components/cart/CartPage";
 import {authFB} from "../firebase/configs/firebase.config";
-import {setUserToken} from "./store/actions/firebase-actions";
+import {setUserToken} from "./store/actions/firebase-actions/firebaseActionsRdx";
+import UserProfile from "./components/user_profile/UserProfile";
 
 const App : React.FC = () => {
     const activeView = useSelector<AppState,string>((state : AppState) => state.selectedView)
@@ -25,6 +28,10 @@ const App : React.FC = () => {
     const userToken = useSelector<AppState,string>( (state : AppState) => state.userToken);
 
     let dispatch = useDispatch();
+
+    useEffect(()=>{
+
+    })
 
     let handleView = useCallback((str : string) => (e : any)=>{
         e.preventDefault();
@@ -49,9 +56,11 @@ const App : React.FC = () => {
         dispatch(logoutUser());
     },[])
 
+
     authFB.onAuthStateChanged((user) => {
             if (user) {
                 console.log("user sign in");
+                if (userToken === "") dispatch(setUserToken(user.uid))
             }
             else {
                 console.log("no user");
@@ -65,34 +74,41 @@ const App : React.FC = () => {
                 <div className="Test">
                     TOKEN: {userToken}
                 </div>
+
                 <TopBar/>
 
-                { (sideMenuAppear && (userToken != "")) &&
+                { (sideMenuAppear) && (userToken != "") &&
                     <nav className="TopBar-wrapper" onClick={closeMenuHandler}>
                         <SignedInLinks/>
                     </nav>
                 }
-
-                { (sideMenuAppear && (userToken != "")) &&
+                { (sideMenuAppear) && (userToken != "") &&
                     <div className="SideMenuBack" onClick={closeMenuHandler} />
                 }
 
                 <div className="Main-wrapper">
-                    { (activeView === "login") ? <Login/> : null }
-                    { (activeView === "signup") ? <SignUp/> : null }
+                    { //home
+                        (activeView === "categories" || (activeView === "" && userToken !== "") || (userToken !== "" && activeView === "login" ) || (activeView === "signup" && userToken !== ""))
+                            ? <Categories/>
+                            : null
+                    }
+                    { (userToken === "") ? <Login/> : null }
+                    { (activeView === "signup" && userToken === "") ? <SignUp/> : null }
                     { (activeView === "about") ? <About/> : null }
-                    { (activeView === "" || activeView ==="categories") ? <Categories/> : null}
                     { (activeView === "sections") ? <ShowSections/> : null}
                     { (activeView === "products") ? <ProductList/> : null}
-                    { (activeView === "cart") ? <CartPage/> : null }
-                    {(activeView === "categories" || activeView === "") ? <div className="Content-wrapper"><h1>{activeView}</h1></div> : null}
+                    { (activeView === "cart" && userToken !== "") ? <CartPage/> : null }
+                    { (activeView === "categories" || activeView === "") ? <div className="Content-wrapper"><h1>{activeView}</h1></div> : null}
+                    { (activeView === "profile") ? <UserProfile/> : null}
+                    { (activeView === "dashboard") ? <Dashboard/> : null}
                 </div>
 
                 <SignedOutLinks/>
-
-                <button  className="ButtonTest" onClick={handleLogout}>LOGOUT</button>
-                <button className="ButtonTest2" onClick={()=>console.log(authFB.currentUser)}>USER LOGGED</button>
-
+                <div className="ButtonsTest">
+                    <button  className="ButtonTest" onClick={handleLogout}>LOGOUT</button>
+                    <button className="ButtonTest" onClick={()=>console.log(authFB.currentUser)}>USER LOGGED</button>
+                    <button className="ButtonTest" onClick={handleView("dashboard")}>DASHB</button>
+                </div>
             </div>
     )
 }

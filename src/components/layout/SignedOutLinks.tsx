@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
-import "../../appCSS.css";
-import {selectView} from "../../store/actions/global-actions";
+import "../../css/appCSS.css";
+import {selectView} from "../../store/actions/rootActions";
 import {useDispatch} from "react-redux";
 
 const SignedOutLinks : React.FC = () => {

@@ -1,12 +1,12 @@
 import {CatalogActions} from "./catalog-actions/catalogActions";
-import {FirebaseActions} from "./firebase-actions";
-import {GlobalActions} from "./global-actions";
+import {FirebaseActionsRdx} from "./firebase-actions/firebaseActionsRdx";
+import {RootActions} from "./rootActions";
 import {CartActions} from "./cart-actions/cartActions";
 
 
 
 export type AppActions =
-    FirebaseActions |
+    FirebaseActionsRdx |
     CatalogActions |
-    GlobalActions |
+    RootActions |
     CartActions;

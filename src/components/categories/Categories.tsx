@@ -20,20 +20,22 @@ import {selectView} from "../../store/actions/global-actions";
 const Categories : React.FC = () => {
 
    const categories = useSelector<AppState,Category[]>((state) => state.categories );
+   const selectedCategory = useSelector<AppState,string>( (state) => state.selectedCategory)
 
+    const [tempCat,setTempCat] = useState<string>("");
 
-   const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(categoriesFetch());
-
+        if (selectedCategory === "") dispatch(categoriesFetch());
     },[]);
 
-    let selectCategoryHandler = useCallback((id : string) => (e : React.MouseEvent) =>{
-        dispatch(selectCategory(id));
-        dispatch(sectionsFetch(id));
+    let selectCategoryHandler = useCallback((cat_id : string) => (e : React.MouseEvent) =>{
+        if (cat_id !== selectedCategory ){
+            dispatch(selectCategory(cat_id));
+            dispatch(sectionsFetch(cat_id));
+        }
         dispatch(selectView("sections"));
-
     },[]);
 
     if (categories) return (

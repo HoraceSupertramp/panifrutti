@@ -21,7 +21,7 @@ import {
 } from "./cart-reducers/reducersCart";
 import {userTokenReducer} from "./firebase-reducers/firebaseAuthReducers";
 import {AppState, CartProduct, Category, Product, Section} from "../../app.types";
-import {AppActions} from "../actions/app-actions";
+import {AppActions} from "../actions/appActions";
 import {Reducer} from "redux";
 
 /*

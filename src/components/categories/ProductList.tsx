@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     selectProduct,
 } from "../../store/actions/catalog-actions/catalogActions";
-import {selectView} from "../../store/actions/global-actions";
+import {selectView} from "../../store/actions/rootActions";
 import CartButtonsPanel from "../cart/CartButtonsPanel";
 import ProductCard from "../layout/ProductCard";
 
@@ -26,10 +26,10 @@ const ProductList : React.FC= () => {
 
     const [item,setItem] = useState<Product|undefined>({ id: ""});
 
-    let selectProductHandler = useCallback((id: string, products: Product[]) => (e : React.MouseEvent) => {
-        let tmp = products.find(product => product.id === id);
+    let selectProductHandler = useCallback((prod_id: string, products: Product[]) => (e : React.MouseEvent) => {
+        let tmp = products.find(product => product.id === prod_id);
         setItem(tmp);
-        dispatch(selectProduct(id));
+        dispatch(selectProduct(prod_id));
     }, [])
 
     let handle = useCallback((str : string) => (e : any)=>{
@@ -40,10 +40,6 @@ const ProductList : React.FC= () => {
     let closeCard = useCallback(() => {
         dispatch(selectProduct(""))
     },[]);
-
-    let cart = useSelector<AppState,CartProduct[]>((state: AppState) => state.cartProducts)
-
-
 
     return (
         <div className="Content-wrapper" id="productList-wrapper">
@@ -58,22 +54,22 @@ const ProductList : React.FC= () => {
                 {
                     products &&
                     products
-                        .map((el : Product ) => {
+                        .map((prod : Product ) => {
                             return (
                                 <li className="Section-item"
-                                     key={el.id}
+                                     key={prod.id}
                                 >
                                     <div className="ProductListItemDetails">
 
                                         <div className="ItemImage">
-                                            <div className="TEMPimage" onClick={selectProductHandler(el.id,products)}>{el.image}</div>
+                                            <div className="TEMPimage" onClick={selectProductHandler(prod.id,products)}>{prod.image}</div>
                                         </div>
                                         <div className="ListItemInfo-container">
                                             <div className="ListItemInforms" id="list-item-info-wrapper">
-                                                <h5>{el.id}</h5>
-                                                <h5>{el.price}</h5>
+                                                <h5>{prod.id}</h5>
+                                                <h5>{prod.price}</h5>
                                             </div>
-                                            <CartButtonsPanel product={el}/>
+                                            <CartButtonsPanel product={prod}/>
                                         </div>
 
                                     </div>

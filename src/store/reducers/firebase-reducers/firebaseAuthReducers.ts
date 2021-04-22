@@ -1,6 +1,6 @@
-import {FirebaseActions} from "../../actions/firebase-actions";
+import {FirebaseActionsRdx} from "../../actions/firebase-actions/firebaseActionsRdx";
 
-export const userTokenReducer = (state = "", action : FirebaseActions) => {
+export const userTokenReducer = (state = "", action : FirebaseActionsRdx) => {
     switch (action.type) {
         case "SET_USER_TOKEN" :
             return action.userToken

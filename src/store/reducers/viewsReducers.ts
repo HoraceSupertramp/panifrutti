@@ -1,7 +1,7 @@
-import {GlobalActions} from "../actions/global-actions";
+import {RootActions} from "../actions/rootActions";
 
 
-export const selectedViewReducer = (state = "", action : GlobalActions) => {
+export const selectedViewReducer = (state = "", action : RootActions) => {
     switch (action.type) {
         case "SELECT_VIEW" :
             return action.selectedView;
@@ -11,7 +11,7 @@ export const selectedViewReducer = (state = "", action : GlobalActions) => {
 }
 
 
-export const sideMenuAppearReducer = (state = false, action : GlobalActions) => {
+export const sideMenuAppearReducer = (state = false, action : RootActions) => {
     switch (action.type) {
         case "OPEN_SIDE_MENU" :
             return action.sideMenuAppear;
@@ -23,7 +23,7 @@ export const sideMenuAppearReducer = (state = false, action : GlobalActions) => 
     }
 }
 
-export const cartPopupAppearAppearReducer = (state = false, action : GlobalActions) => {
+export const cartPopupAppearAppearReducer = (state = false, action : RootActions) => {
     switch (action.type) {
         case "OPEN_CART_POPUP" :
             return action.cartPopupAppear;

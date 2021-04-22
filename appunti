@@ -1,0 +1,2 @@
+firestoreFB.collection("users").doc(tmp)
+    .get()

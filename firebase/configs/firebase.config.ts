@@ -25,7 +25,6 @@ const myapp = firebase.initializeApp(firebaseConfig);
 
 // Instantiate firebase.auth
 const auth = firebase.auth(myapp);
-//frbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then();
 
 // Instantiate firebase.firestore
 const  db = firebase.firestore();
@@ -43,7 +42,7 @@ const ui = new firebaseui.auth.AuthUI(firebase.auth());
 //let uiElement = () => ui.start('#firebaseui-auth-container', uiConfig);
 //export const startUi = uiElement;
 
-export const firestoreApp = db;
+export const firestoreFB = db;
 export const authFB = auth;
 
 

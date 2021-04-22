@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from "react";
 import 'firebaseui/dist/firebaseui.css'
 import {authFB} from "../../../firebase/configs/firebase.config";
-import {loginWithEmailAndPassword, setUserToken} from "../../store/actions/firebase-actions";
-import {selectView} from "../../store/actions/global-actions";
+import {loginWithEmailAndPassword, setUserToken} from "../../store/actions/firebase-actions/firebaseActionsRdx";
+import {selectView} from "../../store/actions/rootActions";
 import {useDispatch} from "react-redux";
 import {UserCredential} from "@firebase/auth-types";
 
@@ -36,7 +36,7 @@ const Login : React.FC = () => {
 
     let handleSubmit = useCallback( (e) => {
         e.preventDefault();
-        dispatch(loginWithEmailAndPassword(credentials))
+        dispatch(loginWithEmailAndPassword(credentials));
     },[credentials])
 
     return (

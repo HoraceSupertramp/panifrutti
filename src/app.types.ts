@@ -12,14 +12,9 @@ export type AppState = {
     cartPopupAppear: boolean;        //gestisce apertura carrello popup
 };
 
-export type Section = {
-    id : string;
-    image? : string;
-}
-
 export type Product = {
     id: string;
-    available?: boolean;
+    isAvailable?: boolean;
     description?: string;
     preorder?: boolean;
     measureKg?: string;
@@ -29,11 +24,16 @@ export type Product = {
     image?: any;
 }
 
+export type Section = {
+    id : string;
+    image? : string;
+    isAvailable?: boolean;
+}
 
 export type Category = {
     id: string;
-    image?: any;
-    isActive?: boolean;
+    image?: string;
+    isAvailable?: boolean;
 }
 
 export type Order = {
@@ -51,4 +51,11 @@ export type CartProduct = {
 export type LocalUserCredentials = {
     email: string,
     password: string,
+}
+
+export type UserData = {
+    id: string;
+    name: string;
+    lastName: string;
+    position: string;
 }

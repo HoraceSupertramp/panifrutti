@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {authFB} from "../../../firebase/configs/firebase.config";
 import {UserCredential} from "@firebase/auth-types";
-import {selectView} from "../../store/actions/global-actions";
+import {selectView} from "../../store/actions/rootActions";
 import {useDispatch} from "react-redux";
-import {setUserToken} from "../../store/actions/firebase-actions";
+import {setUserToken, signupWithEmailAndPassword} from "../../store/actions/firebase-actions/firebaseActionsRdx";
 
 type AccessCredentials = {
     email: string,
@@ -31,11 +31,11 @@ const SignUp : React.FC = () => {
                 [e.target.id]: e.target.value
             }
         );
-    },[credentials])
+    },[credentials]);
 
     let handleView = useCallback(()=>{
         dispatch(selectView("categories"));
-    },[])
+    },[]);
 
 
     authFB.onAuthStateChanged((user) => {
@@ -45,29 +45,30 @@ const SignUp : React.FC = () => {
             else {
                 console.log("no user");
             }
-        }
-    )
+    });
 
     let handleSubmit = useCallback( (e) => {
-            e.preventDefault();
-            authFB.createUserWithEmailAndPassword(credentials.email, credentials.password)
-                .then((usr_cred : UserCredential ) => {
-                    let tmp = usr_cred.user?.uid
-                    if(tmp) {
-                          dispatch((setUserToken(tmp)));
-                          handleView();
-                    }
-                })
-                .catch(error => {
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    if (errorCode == 'auth/weak-password') {
-                        alert('The password is too weak.');
-                    } else {
-                        alert(errorMessage);
-                    }
-                    console.log(error);
-                })
+        e.preventDefault();
+      /*  authFB.createUserWithEmailAndPassword(credentials.email, credentials.password)
+        .then((usr_cred : UserCredential ) => {
+            let tmp = usr_cred.user?.uid
+            if(tmp) {
+                  dispatch((setUserToken(tmp)));
+                  handleView();
+            }
+
+        })
+        .catch(error => {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            if (errorCode == 'auth/weak-password') {
+                alert('The password is too weak.');
+            } else {
+                alert(errorMessage);
+            }
+            console.log(error);
+        });*/
+        dispatch(signupWithEmailAndPassword(credentials))
     },[credentials])
 
   return (

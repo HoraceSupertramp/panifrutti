@@ -92,8 +92,7 @@ header {
     max-width: 70%;
     min-width: 70%;
     align-items: center;
-    justify-content: flex-start;
-
+    justify-content: space-between;
 }
 
 #burger-menu-svg{
@@ -106,7 +105,7 @@ header {
     display: flex;
     justify-content: flex-end;
     flex: 1 1 auto;
-    height: 4vh;
+    height: 2em;
 }
 
 #cart-button-container{
@@ -128,6 +127,7 @@ header {
     min-width: 15%;
     min-height: 60%;
     cursor: pointer;
+    margin-left: 2%;
 }
 
 .SideMenuBack{
@@ -370,20 +370,18 @@ header {
     left: 2%;
 }
 
-.ButtonTest{
+
+.ButtonsTest{
     position: fixed;
-    bottom: 6%;
+    height: 3vh;
+    width: 100vh;
+    bottom:8%;
+    display: flex;
 }
 
 .ButtonTest{
-    position: fixed;
-    bottom: 6%;
-}
-
-.ButtonTest2{
-    position: fixed;
-    bottom: 6%;
-    right: 0;
+    min-width: 6%;
+    margin: 0 3%;
 }
 
 /** *********** CART ************* */
