@@ -28,6 +28,7 @@ export type Section = {
     id : string;
     image? : string;
     isAvailable?: boolean;
+    category?: string;
 }
 
 export type Category = {

@@ -84,7 +84,7 @@ export const setUserToken = (str: string) => {
  * loginWithEmailAndPassword = (credentials: LocalUserCredentials) => void
  *
  *  *  Async function:
- *  1) calls the firebase API to authenticate a user with the email
+ *  calls the firebase API to authenticate a user with the email
  *  and the password.
  *
  * @param credentials an object whose values represents email and password fields
@@ -98,6 +98,7 @@ export const loginWithEmailAndPassword = (credentials: LocalUserCredentials) => 
                 if(tmp) {
                     dispatch(loginSuccess(tmp));
                 }
+                //TODO: revision for set persistence
                 authFB.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
                     .then(()=> {
                         dispatch(selectView("categories"))

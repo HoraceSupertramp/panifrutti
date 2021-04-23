@@ -33,9 +33,19 @@ const  db = firebase.firestore();
 // Activate emulators
 if (process.env.NODE_ENV === "development") {
     // AUTH
-    auth.useEmulator("http://localhost:9099");
+    try {
+        auth.useEmulator("http://localhost:9099");
+    }
+    catch (e) {
+        console.log("AUTH ERR:", e)
+    }
     //FIRESTORE
-    db.useEmulator("localhost", 8080);
+    try {
+        db.useEmulator("localhost", 8080);
+    }
+    catch (e) {
+        console.log("DB ERR:", e)
+    }
 }
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
