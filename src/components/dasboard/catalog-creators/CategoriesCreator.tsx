@@ -1,28 +1,39 @@
 import React, {useCallback, useState} from 'react';
-import {Category} from "../../app.types";
-import {firestoreFB} from "../../../firebase/configs/firebase.config";
+import {Category} from "../../../app.types";
+import {firestoreFB} from "../../../../firebase/configs/firebase.config";
+import {useDispatch} from "react-redux";
+import {categoriesFetch} from "../../../store/actions/catalog-actions/catalogActions";
 
-const CategoriesCreator : React.FC = () => {
+type CategoriesCreatorProps  = {
+    setAppearance: any;
+}
 
-    const [newCategory,setNewCategory] = useState<Category>({
+const CategoriesCreator : React.FC<CategoriesCreatorProps> = ({setAppearance}) => {
+
+
+    const [newCategory,setNewCategory] = useState({
         id: "",
-        image: "",
-        isAvailable: false,
+        el: {
+            image: "",
+            isAvailable: false
+        }
     });
+
+    const dispatch = useDispatch();
 
     let createCategoryHandler = useCallback((e : any) => {
         e.preventDefault();
         //TODO: Set newCategory to firestore
         let catalogRef = firestoreFB.collection("catalog");
-        catalogRef.add(newCategory)
+        catalogRef.doc(newCategory.id).set(newCategory.el)
             .then((doc) =>{
-                console.log("added to firesotore",doc.id);
+                console.log("added to firestore");
+                dispatch(categoriesFetch())
             })
             .catch((err) => {
                 console.log("CODE: ", err.code);
                 console.log("MESSAGE: ", err.message);
             })
-        firestoreFB
         console.log(newCategory);
     },[newCategory]);
 
@@ -48,6 +59,9 @@ const CategoriesCreator : React.FC = () => {
     return (
         <div className="Creator" id={"category-creator"}>
             <h3>Create new category</h3>
+            <div className="ClosePopupsButton"
+                 id="close-addCat-popup-button"
+                 onClick={setAppearance}>X</div>
             <form className="CreatorsForm"
                   onSubmit={createCategoryHandler}
                   id="category-panel-form"

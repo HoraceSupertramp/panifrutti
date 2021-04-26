@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect} from "react";
-import ProductCard from "./ProductList";
-import ProductList from "./ProductList";
+import React, {useCallback, useEffect, useState} from "react";
+import ProductCard from "./Products";
+import Products from "./Products";
 import {AppState, Category, Product, Section} from "../../app.types";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -11,6 +11,8 @@ import {
 } from "../../store/actions/catalog-actions/catalogActions";
 
 import {selectView} from "../../store/actions/rootActions";
+import CategoriesCreator from "../dasboard/catalog-creators/CategoriesCreator";
+import SectionsCreator from "../dasboard/catalog-creators/SectionsCreator";
 //import {sectionsFetch} from "../../store/actions/catalog-actions/catalogActions";
 
 /** Creates and renders a Products[] having the same "section" KEY
@@ -26,10 +28,16 @@ import {selectView} from "../../store/actions/rootActions";
  */
 
 
-const ShowSections : React.FC = () => {
+
+const Sections : React.FC = () => {
 
     const sections = useSelector<AppState,Section[]>( (state) => state.sections);
-    const selectedSection = useSelector<AppState,string>( (state) => state.selectedSection)
+    const selectedSection = useSelector<AppState,string>( (state) => state.selectedSection);
+    const userToken = useSelector<AppState,string>( (state) => state.userToken);
+
+    const [popAddAppear,setPopAddAppear] = useState<boolean>(false);
+
+
 
     const dispatch = useDispatch();
 
@@ -41,16 +49,40 @@ const ShowSections : React.FC = () => {
         dispatch(selectView("products"));
     }, [])
 
-    let handle = useCallback((str : string) => (e : any)=>{
+    let handleView = useCallback((str : string) => (e : any)=>{
         dispatch(selectView(str));
     },[])
+
+    let popAddAppearOpen = useCallback((e : any) => {
+        e.preventDefault();
+        if (!popAddAppear) setPopAddAppear(true)
+    },[popAddAppear]);
+
+    let popAddAppearClose = useCallback((e : any) => {
+        e.preventDefault();
+        if (popAddAppear) setPopAddAppear(false);
+    },[popAddAppear]);
 
     return (
         <div className="Content-wrapper" id="sections-wrapper">
             <div className="NavHistory">
-                <h5 onClick={handle("categories")} className="NavLinksSmall">Categories </h5>
+                <h5 onClick={handleView("categories")} className="NavLinksSmall">Categories </h5>
             </div>
+            {(popAddAppear) &&
+            <div className="PopupCreator">
+                <div className="PopupCreatorBack" onClick={popAddAppearClose}/>
+                <div className="PopupCreatorComponent">
+                    <SectionsCreator setAppearance={popAddAppearClose}/>
+                </div>
+            </div>
+            }
             <ul className="Categories-wrapper">
+                {
+                    userToken &&
+                    <li className="GroupButton-item">
+                        <div className="TEMPimage" onClick={popAddAppearOpen}>ADD</div>
+                    </li>
+                }
             {
             sections &&
             sections
@@ -70,4 +102,4 @@ const ShowSections : React.FC = () => {
     )
 }
 
-export default ShowSections;
+export default Sections;

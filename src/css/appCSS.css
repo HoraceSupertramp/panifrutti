@@ -356,6 +356,8 @@ header {
 .TEMPimage{
     background: darkgray;
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     height: 9em;

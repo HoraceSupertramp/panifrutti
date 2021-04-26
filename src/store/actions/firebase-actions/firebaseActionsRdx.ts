@@ -4,10 +4,8 @@ import {AppState, Category, LocalUserCredentials} from "../../../app.types";
 import {selectView} from "../rootActions";
 import firebase from "firebase";
 import {firestore} from "firebase-admin/lib/firestore";
-import DocumentData = firestore.DocumentData;
-import {categoriesFetchEnd} from "../catalog-actions/catalogActions";
 
-
+const SET_USER_ROLE = "SET_USER_ROLE";
 const SET_USER_TOKEN = "SET_USER_TOKEN";
 const LOGIN_WITH_EP = "LOGIN_WITH_EP";
 const LOGIN_SUCCESS = "LOGIN_WITH_SUCCESS";
@@ -22,6 +20,10 @@ const LOGOUT_USER = "LOGOUT_USER";
 export interface SetUserToken {
     type: typeof SET_USER_TOKEN
     userToken: string;
+}
+export interface SetUserRole {
+    type: typeof SET_USER_ROLE;
+    userRole: string;
 }
 
 export interface LoginWithEmailAndPassword {
@@ -80,6 +82,14 @@ export const setUserToken = (str: string) => {
     }
 }
 
+export const setUserRole = (str: string) => {
+    return {
+        type: "SET_USER_ROLE",
+        userToken: str
+    }
+}
+
+
 /**
  * loginWithEmailAndPassword = (credentials: LocalUserCredentials) => void
  *
@@ -92,13 +102,23 @@ export const setUserToken = (str: string) => {
 
 export const loginWithEmailAndPassword = (credentials: LocalUserCredentials) => {
     return (dispatch : any) => {
+        console.log("SIGN_IN")
         authFB.signInWithEmailAndPassword(credentials.email, credentials.password)
             .then((usr_cred : UserCredential ) => {
                 let tmp = usr_cred.user?.uid
+
                 if(tmp) {
+                    firestoreFB.collection("users")
+                        .where("id", "==", tmp)
+                        .get()
+                        .then((doc) => {
+                            console.log(doc.docs);
+
+                        })
                     dispatch(loginSuccess(tmp));
                 }
                 //TODO: revision for set persistence
+                /*
                 authFB.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
                     .then(()=> {
                         dispatch(selectView("categories"))
@@ -110,8 +130,7 @@ export const loginWithEmailAndPassword = (credentials: LocalUserCredentials) => 
                         let errorMessage = error.message;
                         console.log("CODE: ", errorCode);
                         console.log("MESSAGE: ", errorMessage);
-                    });
-
+                    });*/
             })
             .catch((error : any) => {
                 dispatch(loginFailure(error))
@@ -208,6 +227,7 @@ export const signupWithEmailAndPassword = (credentials: LocalUserCredentials) =>
             .catch((error : any) => {
                 dispatch(signupFailure(error))
             })
+        //TODO: check if user exists
     }
 }
 /**
@@ -252,6 +272,7 @@ const signupFailure = (error: any) => {
 
 export type FirebaseActionsRdx =
     SetUserToken |
+    SetUserRole |
     LoginWithEmailAndPassword |
     LoginSuccess |
     LoginFailure |

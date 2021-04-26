@@ -1,19 +1,33 @@
 import React, {useCallback, useState} from 'react';
-import {Product} from "../../app.types";
+import {AppState, Product, Section} from "../../../app.types";
+import {useDispatch, useSelector} from "react-redux";
+import {firestoreFB} from "../../../../firebase/configs/firebase.config";
+import {productsFetch, sectionsFetch} from "../../../store/actions/catalog-actions/catalogActions";
 
-const ProductsCreator : React.FC = () => {
+type ProductsCreatorProps  = {
+    setAppearance: any;
+}
 
-    const [newProduct,setNewProduct] = useState<Product>({
+const ProductsCreator : React.FC<ProductsCreatorProps> = ({setAppearance}) => {
+
+    const sections = useSelector<AppState,Section[]>( (state: AppState) => state.sections);
+    const selectedSection = useSelector<AppState,string>((state) => state.selectedSection);
+
+    const [newProduct,setNewProduct] = useState({
         id: "",
-        isAvailable: false,
-        description: "",
-        preorder: false,
-        measureKg: "",
-        price: 0,
-        section: "",
-        primizia: "",
-        image: "",
+        el : {
+            isAvailable: false,
+            description: "",
+            preorder: false,
+            measureKg: "",
+            price: 0,
+            section: selectedSection,
+            primizia: "",
+            image: "",
+        }
     });
+
+    let dispatch = useDispatch();
 
     let createProductHandler = useCallback((e : any) => {
         e.preventDefault();
@@ -26,8 +40,19 @@ const ProductsCreator : React.FC = () => {
          *      provide to create a new one with newSection.id = newProduct.section .
          *
          */
+        let catalogRef = firestoreFB.collection(newProduct.el.section);
 
-        //
+        catalogRef.doc(newProduct.id)
+            .set(newProduct.el)
+            .then(() => {
+                console.log("NEW SECTION ADDED");
+                dispatch(productsFetch(newProduct.el.section));
+            })
+            .catch((err) => {
+                console.log("CODE", err.code);
+                console.log("MESSAGE", err.message);
+            });
+
         console.log(newProduct);
     },[newProduct]);
 
@@ -48,12 +73,14 @@ const ProductsCreator : React.FC = () => {
                 [e.target.name]: e.target.checked
             }
         );
-    },[newProduct])
-
+    },[newProduct]);
 
     return (
         <div className="Creator" id={"products-creator"}>
             <h3>Create new product</h3>
+            <div className="ClosePopupsButton"
+                 id="close-addSect-popup-button"
+                 onClick={setAppearance}>X</div>
             <form className="CreatorsForm"
                   onSubmit={createProductHandler}
                   id="product-panel-form">
@@ -77,11 +104,13 @@ const ProductsCreator : React.FC = () => {
                 <input type="checkbox"
                        id="new-product-availability"
                        name="isAvailable"
+                       onChange={handleChangeCheckbox}
                 />
                 <label htmlFor="new-product-preorder">Preorder</label>
                 <input type="checkbox"
                        id="new-product-preorder"
                        name="preorder"
+                       onChange={handleChangeCheckbox}
                        placeholder="Preorder"
                 />
                 <label htmlFor="new-product-measureKg">Measure</label>
@@ -97,13 +126,6 @@ const ProductsCreator : React.FC = () => {
                        id="new-product-price"
                        name="price"
                        placeholder="Price"
-                       onChange={handleChange}
-                       required
-                />
-                <label htmlFor="new-section-product">Section</label>
-                <input type="text"
-                       id="new-section-product"
-                       placeholder="Product"
                        onChange={handleChange}
                        required
                 />

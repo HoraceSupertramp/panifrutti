@@ -25,7 +25,30 @@
     background: blanchedalmond;
 }
 
+.PopupCreator{
+    position: absolute;
+    height: 80vh;
+    width: 60vw;
+    top: 3%;
+    background: coral;
+}
+.PopupCreatorBack{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background: #dad7fa75;
+    z-index: 1;
+}
+
+.PopupCreatorComponent{
+    position: relative;
+    z-index: 2;
+}
+
 .Creator{
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;

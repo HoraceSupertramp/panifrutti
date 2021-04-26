@@ -1,4 +1,5 @@
 export type AppState = {
+    userRole: string;
     userToken: string;
     categories: Category[];         //categorie generali
     selectedCategory: string;       //categoria selezionata

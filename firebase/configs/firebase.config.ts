@@ -1,8 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth"
-import {uiConfig} from "./ui.config";
-const firebaseui = require("firebaseui");
 
 //Firebase configuration object
 const firebaseConfig = (process.env.NODE_ENV === "production") ? {
@@ -16,10 +14,8 @@ const firebaseConfig = (process.env.NODE_ENV === "production") ? {
     measurementId: "G-D39GSGJWSR"
 } : {
     projectId: "emulated-panifrutti",
-    apiKey: "AIzaSyBxPIPPOeXZuxgPLUTOR43utPAPERINO",
-    authDomain: "panifrutti-45ea1.emulated.com",
+    apiKey: "AIzaSyBxM7PLIOeXZuxgBZU60R43utE5MQfS9G4",
 }
-
 // Initialize Firebase
 const myapp = firebase.initializeApp(firebaseConfig);
 
@@ -47,10 +43,6 @@ if (process.env.NODE_ENV === "development") {
         console.log("DB ERR:", e)
     }
 }
-
-const ui = new firebaseui.auth.AuthUI(firebase.auth());
-//let uiElement = () => ui.start('#firebaseui-auth-container', uiConfig);
-//export const startUi = uiElement;
 
 export const firestoreFB = db;
 export const authFB = auth;

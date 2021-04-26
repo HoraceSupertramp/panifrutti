@@ -4,6 +4,7 @@ import {UserCredential} from "@firebase/auth-types";
 import {selectView} from "../../store/actions/rootActions";
 import {useDispatch} from "react-redux";
 import {setUserToken, signupWithEmailAndPassword} from "../../store/actions/firebase-actions/firebaseActionsRdx";
+import {categoriesFetch} from "../../store/actions/catalog-actions/catalogActions";
 
 type AccessCredentials = {
     email: string,
@@ -12,6 +13,20 @@ type AccessCredentials = {
     lastName: string
 }
 
+
+/**
+ * TODO: 7
+ *  register process:
+ *  ) select the provider
+ *  ) check credentials
+ *  ) verify email?
+ *  ) create user on users' db.auth main data ok, you can use the app
+ *  ) create user on db.firestore, need it to store some additional main data (location)
+ *  ) populate db.firestore.data with users info
+ *
+ *
+ * @constructor
+ */
 const SignUp : React.FC = () => {
     const [credentials,setCredentials] = useState<AccessCredentials>({
         email : "",
@@ -49,25 +64,6 @@ const SignUp : React.FC = () => {
 
     let handleSubmit = useCallback( (e) => {
         e.preventDefault();
-      /*  authFB.createUserWithEmailAndPassword(credentials.email, credentials.password)
-        .then((usr_cred : UserCredential ) => {
-            let tmp = usr_cred.user?.uid
-            if(tmp) {
-                  dispatch((setUserToken(tmp)));
-                  handleView();
-            }
-
-        })
-        .catch(error => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            if (errorCode == 'auth/weak-password') {
-                alert('The password is too weak.');
-            } else {
-                alert(errorMessage);
-            }
-            console.log(error);
-        });*/
         dispatch(signupWithEmailAndPassword(credentials))
     },[credentials])
 

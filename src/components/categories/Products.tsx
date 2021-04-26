@@ -7,8 +7,10 @@ import {
 import {selectView} from "../../store/actions/rootActions";
 import CartButtonsPanel from "../cart/CartButtonsPanel";
 import ProductCard from "../layout/ProductCard";
+import SectionsCreator from "../dasboard/catalog-creators/SectionsCreator";
+import ProductsCreator from "../dasboard/catalog-creators/ProductsCreator";
 
-/** Returns a React.FC, representing a ProductList
+/** Returns a React.FC, representing a Products
  *  passed by the caller
  *
  * STATE: {
@@ -17,14 +19,16 @@ import ProductCard from "../layout/ProductCard";
  */
 
 
-const ProductList : React.FC= () => {
+const Products : React.FC= () => {
 
     const products = useSelector<AppState,Product[]>( (state) => state.products);
     const selectedProduct = useSelector<AppState,string>( (state) => state.selectedProduct);
+    const userToken = useSelector<AppState,string>( (state) => state.userToken);
+
+    const [popAddAppear,setPopAddAppear] = useState<boolean>(false);
+    const [item,setItem] = useState<Product|undefined>({ id: ""});
 
     const dispatch = useDispatch();
-
-    const [item,setItem] = useState<Product|undefined>({ id: ""});
 
     let selectProductHandler = useCallback((prod_id: string, products: Product[]) => (e : React.MouseEvent) => {
         let tmp = products.find(product => product.id === prod_id);
@@ -32,7 +36,7 @@ const ProductList : React.FC= () => {
         dispatch(selectProduct(prod_id));
     }, [])
 
-    let handle = useCallback((str : string) => (e : any)=>{
+    let handleView = useCallback((str : string) => (e : any)=>{
         dispatch(selectView(str));
     },[])
 
@@ -41,16 +45,40 @@ const ProductList : React.FC= () => {
         dispatch(selectProduct(""))
     },[]);
 
+    let popAddAppearOpen = useCallback((e : any) => {
+        e.preventDefault();
+        if (!popAddAppear) setPopAddAppear(true)
+    },[popAddAppear]);
+
+    let popAddAppearClose = useCallback((e : any) => {
+        e.preventDefault();
+        if (popAddAppear) setPopAddAppear(false);
+    },[popAddAppear]);
+
+
     return (
         <div className="Content-wrapper" id="productList-wrapper">
+            {(popAddAppear) &&
+            <div className="PopupCreator">
+                <div className="PopupCreatorBack" onClick={popAddAppearClose}/>
+                <div className="PopupCreatorComponent">
+                    <ProductsCreator setAppearance={popAddAppearClose}/>
+                </div>
+            </div>
+            }
             <div className="ProductList-wrapper">
                 <div className="NavHistory">
-                    <h5 onClick={handle("sections")} className="NavLinksSmall">Sections </h5>
+                    <h5 onClick={handleView("sections")} className="NavLinksSmall">Sections </h5>
                     <h5> &gt; </h5>
-                    <h5 onClick={handle("products")} className="NavLinksSmall">Products </h5>
+                    <h5 onClick={handleView("products")} className="NavLinksSmall">Products </h5>
                 </div>
-
                 <ul className="ProductList">
+                    {
+                        userToken &&
+                        <li className="Section-item">
+                            <div className="TEMPimage" onClick={popAddAppearOpen}>ADD</div>
+                        </li>
+                    }
                 {
                     products &&
                     products
@@ -92,4 +120,4 @@ const ProductList : React.FC= () => {
     );
 }
 
-export default ProductList;
+export default Products;

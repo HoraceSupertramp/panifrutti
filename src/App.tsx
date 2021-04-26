@@ -11,8 +11,8 @@ import Summary from "./components/Summary";
 import Dashboard from "./components/dasboard/Dashboard";
 import Login from "./components/auth/Login";
 import SignUp from "./components/auth/SignUp";
-import ShowSections from "./components/categories/ShowSections";
-import ProductList from "./components/categories/ProductList";
+import Sections from "./components/categories/Sections";
+import Products from "./components/categories/Products";
 import {closeSideMenu, logoutUser, openSideMenu, selectView} from "./store/actions/rootActions";
 import SignedOutLinks from "./components/layout/SignedOutLinks";
 import SignedInLinks from "./components/layout/SignedInLinks";
@@ -95,8 +95,8 @@ const App : React.FC = () => {
                     { (userToken === "") ? <Login/> : null }
                     { (activeView === "signup" && userToken === "") ? <SignUp/> : null }
                     { (activeView === "about") ? <About/> : null }
-                    { (activeView === "sections") ? <ShowSections/> : null}
-                    { (activeView === "products") ? <ProductList/> : null}
+                    { (activeView === "sections") ? <Sections/> : null}
+                    { (activeView === "products") ? <Products/> : null}
                     { (activeView === "cart" && userToken !== "") ? <CartPage/> : null }
                     { (activeView === "categories" || activeView === "") ? <div className="Content-wrapper"><h1>{activeView}</h1></div> : null}
                     { (activeView === "profile") ? <UserProfile/> : null}
