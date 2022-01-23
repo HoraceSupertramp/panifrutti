@@ -1,2 +1,2 @@
 # panifrutti
-Fruit showcase
+Fruit shop showcase
